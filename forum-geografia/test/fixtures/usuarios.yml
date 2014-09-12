@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nome: MyString
+  email: MyString
+  login: MyString
+  nascimento: 2014-09-11
+  ativo: false
+  nivel_id: 
+
+two:
+  nome: MyString
+  email: MyString
+  login: MyString
+  nascimento: 2014-09-11
+  ativo: false
+  nivel_id: 

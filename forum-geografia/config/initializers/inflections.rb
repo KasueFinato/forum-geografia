@@ -14,3 +14,11 @@
 # ActiveSupport::Inflector.inflections(:en) do |inflect|
 #   inflect.acronym 'RESTful'
 # end
+
+ActiveSupport::Inflector.inflections do |inflect|
+   inflect.irregular 'nivel', 'niveis'
+end
+
+#ActiveSupport::Inflector.inflections do |inflect|
+#  inflect.irregular 'turma_usuario', 'turma_usuario'
+#end

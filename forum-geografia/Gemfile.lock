@@ -97,6 +97,7 @@ GEM
       activesupport (>= 3.0)
       sprockets (~> 2.8)
     sqlite3 (1.3.9)
+    sqlite3 (1.3.9-x86-mingw32)
     therubyracer (0.12.1)
       libv8 (~> 3.16.14.0)
       ref
@@ -110,12 +111,15 @@ GEM
       coffee-rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    tzinfo-data (1.2014.7)
+      tzinfo (>= 1.0.0)
     uglifier (2.5.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
 
 PLATFORMS
   ruby
+  x86-mingw32
 
 DEPENDENCIES
   coffee-rails (~> 4.0.0)
@@ -128,4 +132,5 @@ DEPENDENCIES
   sqlite3
   therubyracer
   turbolinks
+  tzinfo-data
   uglifier (>= 1.3.0)
