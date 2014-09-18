@@ -1,0 +1,20 @@
+<h2>Novo Usuario</h2>
+
+<%= form_for @usuario do |f| %>
+
+    <%= f.label 'nome:' %>
+    <%= f.text_field :nome,
+        placeholder: 'Nome completo' %>
+    
+    <%= f.label 'E-mail:' %>
+    <%= f.text_field :email %>
+
+    <%= f.label 'Login:' %>
+    <%= f.text_field :login %>
+    
+    <%= f.label 'Nascimento:' %>
+    <%= f.text_field :nascimento %>
+
+    <%= f.submit 'Salvar' %>
+
+<% end %>
