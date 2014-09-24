@@ -9,4 +9,5 @@ class Usuario < ActiveRecord::Base
   validates :email,
   			presence: {message: 'O email deve ser preenchido'},
   			uniqueness: {message: 'Esse email já foi cadastrado'}
+
 end
