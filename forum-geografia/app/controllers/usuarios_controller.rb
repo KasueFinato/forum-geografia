@@ -1,8 +1,9 @@
+# encoding: UTF-8
 class UsuariosController < ApplicationController
 	#before_action :set_aluno, only: [:show, :edit, :update, :destroy]
 
 	def index
-		@usuario = Usuario.all
+		@usuarios = Usuario.all
 	end
 
 	def show
@@ -17,11 +18,11 @@ class UsuariosController < ApplicationController
     	@usuario = Usuario.new(params.require(:usuario).permit(:nome, :email, :login, :nascimento, :senha))
     
     	if @usuario.save
-    		redirect_to @usuario
+    		redirect_to :usuarios, notice: "#{@usuario.nome} cadastrado com sucesso"
     	else
       # This line overrides the default rendering behavior, which
       # would have been to render the "create" view.
-      		render "new"
+      		render :new
     	end
   	end
 end
