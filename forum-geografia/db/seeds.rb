@@ -9,14 +9,17 @@
 	Usuario.create nome: 'Hellen Barros', 
 				   email: 'juliebcruz@brturbo.com.br', 
 				   login: 'juliebcruz', 
+				   senha: 'pb131811e11',
 				   nascimento: '29-08-1996'
 
 	Usuario.create nome: 'Karoline Miki', 
 				   email: 'kasuefinato@gmail.com', 
-				   login: 'chinaliexpres', 
+				   login: 'kasuemiki', 
+				   senha: 'chinaliexpres',
 				   nascimento: '01-03-1996'
 
 	Usuario.create nome: 'Luiza Santos', 
 				   email: 'luizaosorio@gmail.com', 
-				   login: 'legginswhey', 
+				   login: 'luizaosorio', 
+				   senha: 'legginswhey',
 				   nascimento: '22-01-1997'

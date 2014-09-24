@@ -4,6 +4,7 @@ class CreateUsuarios < ActiveRecord::Migration
       t.string :nome, limit: 100
       t.string :email, limit: 140
       t.string :login, limit: 50
+      t.string :senha, limit: 15
       t.date :nascimento
       t.boolean :ativo
       t.references :nivel, index: true

@@ -3,25 +3,30 @@
 
 <%= form_for @usuario do |f| %>
 
-    <%= f.label 'nome:' %>
-    <%= f.text_field :nome %>
+    <%= f.label 'Nome:' %>
+    <%= f.text_field :nome, maxlength: 100 %>
 
     <p>
     <%= f.label 'E-mail:' %>
-    <%= f.text_field :email %>
+    <%= f.email_field :email, maxlength: 140 %>
     </p>
 
     <p>
     <%= f.label 'Login:' %>
-    <%= f.text_field :login %>
+    <%= f.text_field :login, maxlength: 50 %>
     </p>
 
     <p>
+    <%= f.label 'Senha:' %>
+    <%= f.password_field :senha, maxlength: 15 %>
+    </p>
+
     <%= f.label 'Nascimento:' %>
-    <%= f.text_field :nascimento %>
+    <%= f.date_field :nascimento %>
     </p>
 
 
     <%= f.submit 'Salvar' %>
+
 
 <% end %>
