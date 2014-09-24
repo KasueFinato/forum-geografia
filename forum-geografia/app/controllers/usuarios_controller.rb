@@ -7,7 +7,20 @@ class UsuariosController < ApplicationController
 	end
 
 	def show
+		@usuario = Usuario.find(params[:id])
+	end
 
+	def edit
+		@usuario = Usuario.find(params[:id])
+	end
+
+	def update
+		@usuario = Usuario.find(params[:id])
+		if @usuario.update(params.require(:usuario).permit(:nome, :email, :login, :nascimento, :senha))
+			redirect_to :usuarios, notice: "#{@usuario.nome} atualizado com sucesso" #não ta aparecendo
+    	else
+      		render :edit
+		end
 	end
 
 	def new
@@ -18,11 +31,17 @@ class UsuariosController < ApplicationController
     	@usuario = Usuario.new(params.require(:usuario).permit(:nome, :email, :login, :nascimento, :senha))
     
     	if @usuario.save
-    		redirect_to :usuarios, notice: "#{@usuario.nome} cadastrado com sucesso"
+    		redirect_to :usuarios, notice: "#{@usuario.nome} cadastrado com sucesso" #não ta aparecendo
     	else
       # This line overrides the default rendering behavior, which
       # would have been to render the "create" view.
       		render :new
     	end
   	end
+
+  	def destroy
+  		u = Usuario.find [params:id]
+  		u.destroy
+  		redirect_to :usuarios, notice: "usuario #{u.nome} excluido"
+	end
 end

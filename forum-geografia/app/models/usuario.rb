@@ -9,7 +9,7 @@ class Usuario < ActiveRecord::Base
   			presence: {message: 'O nome deve ser preenchido'}
 
   validates :email,
-  			email: true,
+  			#email: true,
   			presence: {message: 'O email deve ser preenchido'},
   			length: { in: 5..140},
   			uniqueness: {message: 'Esse email já foi cadastrado'}
@@ -28,10 +28,11 @@ class Usuario < ActiveRecord::Base
 
 end
 
-class EmailValidator < ActiveModel::EachValidator
-  def validate_each(record, attribute, value)
-    unless value =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
-      record.errors[attribute] << (options[:message] || "Não é um email")
-    end
-  end
-end
+#como usar essa validaçao?
+# class EmailValidator < ActiveModel::EachValidator
+#   def validate_each(record, attribute, value)
+#     unless value =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+#       record.errors[attribute] << (options[:message] || "Não é um email")
+#     end
+#   end
+# end

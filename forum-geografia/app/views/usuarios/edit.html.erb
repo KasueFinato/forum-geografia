@@ -1,0 +1,42 @@
+
+<h2>Editar Usuario</h2>
+
+    <% if @usuario.errors.any? %>
+
+        <% @usuario.errors.full_messages.each do |m| %>
+
+            <%= m %>
+
+        <% end %>
+    <% end %>
+
+
+    <%= form_for @usuario do |f| %>
+
+       <%= f.label 'Nome:' %>
+        <%= f.text_field :nome, maxlength: 100, size: "60x12" %>
+
+        <p>
+        <%= f.label 'E-mail:' %>
+        <%= f.email_field :email, maxlength: 140, size: "60x12" %>
+        </p>
+
+        <p>
+        <%= f.label 'Login:' %>
+        <%= f.text_field :login, maxlength: 50, size: "30x6" %>
+        </p>
+
+        <p>
+        <%= f.label 'Senha:' %>
+        <%= f.password_field :senha, maxlength: 15, size: "15x3" %>
+        </p>
+
+        <%= f.label 'Nascimento:' %>
+        <%= f.date_field :nascimento %>
+        </p>
+
+
+    <%= f.submit 'Salvar' %>
+
+
+<% end %>
