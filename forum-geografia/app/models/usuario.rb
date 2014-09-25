@@ -26,6 +26,13 @@ class Usuario < ActiveRecord::Base
   validates :nascimento,
   			presence: {message: 'A data de nascimento é obrigatória'}
 
+
+
+  private
+  def data_nascimento_validacaoq2
+    errors.add :nascimento, ''
+  end
+
 end
 
 #como usar essa validaçao?
