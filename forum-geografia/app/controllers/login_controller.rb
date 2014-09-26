@@ -1,6 +1,8 @@
 #encoding: UTF-8
 class LoginController < ActionController::Base
 
+
+
 	def logar
 		#redirect_to :usuarios
 		#render text: 'Oi mundo'
@@ -15,7 +17,7 @@ class LoginController < ActionController::Base
 			render text: 'erro de usuario inexistente'
 		end
 
-#User.find_by(id: session[:current_user_id])
-#redirect_to @usuario
+	    #User.find_by(id: session[:current_user_id])
+		#redirect_to @usuario
 	end
 end

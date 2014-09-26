@@ -17,3 +17,62 @@
  div.field_with_errors input {
  	border:1px solid red;
  }
+ h1 {
+ 	text-align: right;
+ 	font-size: 20px;
+ }
+
+ h2 {
+ 	font-size: 40px;
+ }
+.mask{
+   position: relative;
+   overflow: hidden;
+   margin: 0px auto;
+   width: 90%;
+   background-color: #ffffff
+}
+.header{
+   float: left;
+   width: 100%;
+   background-color: #ffffff
+
+
+}
+.colleft{
+   position: relative;
+   width: 100%;
+   right: 50%;
+   background-color: #ffffff
+}
+.col1{
+   position: relative;
+   overflow: hidden;
+   float: left;
+   width: 49.9%;
+   left: 100.1%;
+   background-color: #6b9cc9;
+   font-size: 18px
+}
+.col2{
+   position: relative;
+   overflow: hidden;
+   float: left;
+   width: 49.9%;
+   left: 0.09999999999999573%;
+   background-color: #6b9cc9;
+   font-size: 18px
+}
+.footer{
+   float: left;
+   width: 100%;
+   background-color: #ffffff;
+   font-size:19px;
+
+}
+body {
+   padding: 0px;
+   margin: 0px;
+   font-size: 90%;
+   background-color: #ffffff
+}
