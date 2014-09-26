@@ -22,5 +22,20 @@
         <td><%= link_to 'Exclui', usuario, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
-  </tbody>
+  </tbody> 
 </table>
+
+<p>
+
+<form method="post">
+Pesquisa de usuarios por nome: 
+<input type="text" name="pesquisa" maxlength="100" size="60x12">
+
+<input type="submit" value="Pesquisar">
+</form>
+
+<% if @resposta%>
+  <% @resposta.each do |r|%>
+    <%= r.nome %>
+  <%end%>
+<%end%>

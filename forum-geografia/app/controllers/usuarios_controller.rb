@@ -44,4 +44,9 @@ class UsuariosController < ApplicationController
   		u.destroy
   		redirect_to :usuarios, notice: "usuario #{u.nome} excluido"
 	end
+
+	def pesquisar
+		@resposta = Usuario.where("nome like '%#{params[:pesquisa]}%'")
+		render :index
+	end
 end
