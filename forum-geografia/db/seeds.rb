@@ -19,3 +19,5 @@
 				   login: 'luizaosorio', 
 				   senha: 'legginswhey',
 				   nascimento: '22-01-1997'
+
+	@usuario = Usuario.new nome: 'Karoline Miki', email: 'kasuefinato@gmail.com', login: 'kasuemiki', senha: 'chinaliexpres', nascimento: '01-03-1996'
