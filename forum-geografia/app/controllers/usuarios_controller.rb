@@ -1,5 +1,5 @@
 # encoding: UTF-8
-class UsuariosController < ApplicationController
+class UsuariosController < ActionController::Base
 	#before_action :set_aluno, only: [:show, :edit, :update, :destroy]
 
 	def index
