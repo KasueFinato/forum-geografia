@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140912013921) do
+ActiveRecord::Schema.define(version: 20141017144249) do
+
+  create_table "assuntos", force: true do |t|
+    t.string   "assunto"
+    t.integer  "tipo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "niveis", force: true do |t|
     t.string   "nivel",      limit: 50
