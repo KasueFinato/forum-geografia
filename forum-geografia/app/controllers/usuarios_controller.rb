@@ -46,7 +46,7 @@ class UsuariosController < ActionController::Base
 	end
 
 	def pesquisar
-		@resposta = Usuario.where("nome like '%#{params[:pesquisa]}%'")
+		@usuarios = Usuario.where("nome like '%#{params[:pesquisa]}%'")
 		render :index
 	end
 end

@@ -1,5 +1,8 @@
+
 Rails.application.routes.draw do
 
+  get 'usuarios/pesquisar' => 'usuarios#pesquisar'
+  
   resources :usuarios
   
   root 'home#index'
@@ -7,7 +10,7 @@ Rails.application.routes.draw do
   get 'login' => 'login#index' 
   post 'login' => 'login#logar'
   
-  get 'usuarios/pesquisar' => 'usuarios#pesquisar'    
+      
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

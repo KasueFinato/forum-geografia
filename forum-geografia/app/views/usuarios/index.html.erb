@@ -27,15 +27,10 @@
 
 <p>
 
-<form method="get" action='usuarios/pesquisa'>
+<form method="get" action='usuarios/pesquisar'>
 Pesquisa de usuarios por nome: 
 <input type="text" name="pesquisa" maxlength="100" size="60x12">
 
 <input type="submit" value="Pesquisar">
 </form>
 
-<% if @resposta%>
-  <% @resposta.each do |r|%>
-    <%= r.nome %>
-  <%end%>
-<%end%>
