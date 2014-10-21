@@ -10256,3 +10256,192 @@ Migrating to CreatePosts (20141017144949)
             FROM sqlite_temp_master
             WHERE name='index_usuarios_on_nivel_id' AND type='index'
 [0m
+
+
+Started GET "/usuarios" for 127.0.0.1 at 2014-10-20 21:06:08 -0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by UsuariosController#index as HTML
+  [1m[35mUsuario Load (2.0ms)[0m  SELECT "usuarios".* FROM "usuarios"
+  Rendered usuarios/index.html.erb (74.0ms)
+Completed 200 OK in 563ms (Views: 295.0ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/usuarios/6" for 127.0.0.1 at 2014-10-20 21:06:17 -0200
+Processing by UsuariosController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUsuario Load (2.0ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1[0m  [["id", 6]]
+  Rendered usuarios/show.html.erb (55.0ms)
+Completed 200 OK in 94ms (Views: 88.0ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/usuarios/8" for 127.0.0.1 at 2014-10-20 21:06:21 -0200
+Processing by UsuariosController#show as HTML
+  Parameters: {"id"=>"8"}
+  [1m[35mUsuario Load (2.0ms)[0m  SELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1  [["id", 8]]
+  Rendered usuarios/show.html.erb (1.0ms)
+Completed 200 OK in 41ms (Views: 35.0ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/usuarios/new" for 127.0.0.1 at 2014-10-20 21:06:25 -0200
+Processing by UsuariosController#new as HTML
+  Rendered usuarios/new.html.erb (442.0ms)
+Completed 200 OK in 507ms (Views: 506.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/usuarios/pesquisar?pesquisa=hellen" for 127.0.0.1 at 2014-10-20 21:07:00 -0200
+Processing by UsuariosController#pesquisar as HTML
+  Parameters: {"pesquisa"=>"hellen"}
+  [1m[36mUsuario Load (1.0ms)[0m  [1mSELECT "usuarios".* FROM "usuarios"  WHERE (nome like '%hellen%')[0m
+  Rendered usuarios/index.html.erb (7.0ms)
+Completed 200 OK in 39ms (Views: 35.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/usuarios/usuarios/pesquisar?pesquisa=lu" for 127.0.0.1 at 2014-10-20 21:07:03 -0200
+
+ActionController::RoutingError (No route matches [GET] "/usuarios/usuarios/pesquisar"):
+  actionpack (4.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.5) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.5) lib/rails/engine.rb:514:in `call'
+  railties (4.1.5) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (4.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/routes/_table.html.erb (45.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (472.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-10-20 21:07:53 -0200
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 9700ms (Views: 9697.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-10-20 21:08:03 -0200
+
+
+Started GET "/assets/login.css?body=1" for 127.0.0.1 at 2014-10-20 21:08:03 -0200
+
+
+Started GET "/assets/geografia.css?body=1" for 127.0.0.1 at 2014-10-20 21:08:04 -0200
+
+
+Started GET "/assets/usuarios.css?body=1" for 127.0.0.1 at 2014-10-20 21:08:04 -0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-10-20 21:08:04 -0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-10-20 21:08:04 -0200
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-10-20 21:08:04 -0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-10-20 21:08:04 -0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-10-20 21:08:04 -0200
+
+
+Started GET "/assets/geografia.js?body=1" for 127.0.0.1 at 2014-10-20 21:08:04 -0200
+
+
+Started GET "/assets/login.js?body=1" for 127.0.0.1 at 2014-10-20 21:08:04 -0200
+
+
+Started GET "/assets/usuarios.js?body=1" for 127.0.0.1 at 2014-10-20 21:08:04 -0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-10-20 21:08:04 -0200
+
+
+Started GET "/" for 127.0.0.1 at 2014-10-20 21:08:52 -0200
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 140ms (Views: 140.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-10-20 21:09:02 -0200
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 125ms (Views: 124.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-10-20 21:09:03 -0200
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 176ms (Views: 175.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-10-20 21:09:03 -0200
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (15.6ms)
+Completed 200 OK in 140ms (Views: 140.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-10-20 21:09:03 -0200
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 140ms (Views: 140.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-10-20 21:09:04 -0200
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 164ms (Views: 163.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-10-20 21:09:04 -0200
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 149ms (Views: 149.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-10-20 21:09:04 -0200
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (15.6ms)
+Completed 200 OK in 189ms (Views: 173.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-10-20 21:09:06 -0200
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 148ms (Views: 148.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-10-20 21:09:06 -0200
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (15.6ms)
+Completed 200 OK in 156ms (Views: 156.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-10-20 21:09:06 -0200
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 189ms (Views: 189.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-10-20 21:09:07 -0200
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 156ms (Views: 156.0ms | ActiveRecord: 0.0ms)
