@@ -27,12 +27,14 @@ class Usuario < ActiveRecord::Base
   validates :nascimento,
   			presence: {message: 'A data de nascimento é obrigatória'}
 
+  validate :email_formatado
+
   private  
-      def email?
-      if not email.blank?
+  def email_formatado
+    if not email.blank?
       errors.add(:email, "Email inválido") unless email =~ /[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})/
-      end
     end
+  end
 
 end
 
