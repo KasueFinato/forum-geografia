@@ -1,4 +1,4 @@
 class Post < ActiveRecord::Base
-  belongs_to :id_usuario
-  belongs_to :id_assunto
+  belongs_to :usuario
+  belongs_to :assunto
 end

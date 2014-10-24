@@ -2,6 +2,7 @@
 
 class Usuario < ActiveRecord::Base
   belongs_to :nivel
+  has_many :posts
 
   validates :nome,
   			#format: { with: /\A[a-zA-Z]+\z/ },???????

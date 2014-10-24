@@ -1,11 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  id_usuario_id: 
-  id_assunto_id: 
-  data: 2014-10-17 11:49:49
+  usuario_id: 
+  data: 2014-10-24 09:04:54
+  conteudo: MyString
+  assunto_id: 
 
 two:
-  id_usuario_id: 
-  id_assunto_id: 
-  data: 2014-10-17 11:49:49
+  usuario_id: 
+  data: 2014-10-24 09:04:54
+  conteudo: MyString
+  assunto_id: 
