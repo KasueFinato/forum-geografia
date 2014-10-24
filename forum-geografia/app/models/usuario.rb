@@ -20,21 +20,28 @@ class Usuario < ActiveRecord::Base
   			uniqueness: {message: 'Esse login já foi cadastrado'}
 
   validates :senha,
-  			length: { in: 4..15},
+        #:exclude => %w[ asdf qwert zxcv ]
+  			length: { in: 5..15},
   			presence: {message: 'A senha deve ser preenchida'}
 
   validates :nascimento,
   			presence: {message: 'A data de nascimento é obrigatória'}
 
-
-
-  private
-  def data_nascimento_validacaoq2
-    errors.add :nascimento, ''
-  end
+  private  
+      def email?
+      if not email.blank?
+      errors.add(:email, "Email inválido") unless email =~ /[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})/
+      end
+    end
 
 end
 
+
+
+#private
+#  def data_nascimento_validacaoq2
+#    errors.add :nascimento, ''
+#  end
 #como usar essa validaçao?
 # class EmailValidator < ActiveModel::EachValidator
 #   def validate_each(record, attribute, value)
