@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   
   resources :usuarios
   
+  get 'posts' => 'posts#index'
+  get 'posts/new' => 'posts#new'
+  post 'posts' => 'posts#create'
+  
   root 'home#index'
 
   get 'login' => 'login#index' 

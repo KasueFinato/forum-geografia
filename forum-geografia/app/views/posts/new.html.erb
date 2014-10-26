@@ -1,0 +1,35 @@
+<h2>Novo Post</h2>
+
+    
+
+    <%= form_for @post do |f| %>
+
+       <%= f.label 'Conteúdo:' %>
+        <%= f.text_field :conteudo, maxlength: 10000, size: "600x120" %>
+
+        </p>
+
+        
+        <%= f.select :assunto, ([["globalização", "0"], ["rochas", "1"]])%>
+
+		</p>
+
+        <%= f.label 'Outro assunto:' %> <font color="red">*Se vocẽ não achou nenhum assunto que se enquadre no seu post fique a vontade para cadastrar um novo.</font>
+        <%= f.text_field :novo_assunto, maxlength: 10000, size: "600x120" %>
+
+
+        <%= radio_button_tag(:geo, "geofis") %>
+		<%= label_tag(:geofis, "Geografia Física") %>
+		<%= radio_button_tag(:geo, "geopol") %>
+		<%= label_tag(:geopol, "Geografia Política") %>
+
+
+
+
+
+
+
+    <%= f.submit 'Salvar' %>
+
+
+<% end %>
