@@ -1,4 +1,11 @@
+<% if session[:usuario] %>
 
+  Logado como  <%= session[:usuario] %>
+
+  <%= form_tag({controller: 'login', action: 'logout'}) do %>
+      <button>Logout</button>
+  <% end %>
+<% end %>
 
 <div class="mask">
     <div class="header">

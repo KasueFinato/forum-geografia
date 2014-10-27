@@ -30,6 +30,7 @@ class LoginController < ActionController::Base
 	end
 
 	def logout
-
+		reset_session
+		redirect_to root_path, notice: 'Você foi deslogado'
 	end
 end
