@@ -1,4 +1,6 @@
 # encoding: UTF-8
+require 'digest'
+
 class UsuariosController < ApplicationController
 	#before_action :set_aluno, only: [:show, :edit, :update, :destroy]
 
@@ -29,7 +31,8 @@ class UsuariosController < ApplicationController
 
 	def create
     	@usuario = Usuario.new(params.require(:usuario).permit(:nome, :email, :login, :nascimento, :senha))
-    
+    	@usuario.senha = Digest::MD5.hexdigest(@usuario.senha)
+
     	if @usuario.save
     		redirect_to :usuarios, notice: "#{@usuario.nome} cadastrado com sucesso" #não ta aparecendo
     	else
