@@ -22,7 +22,7 @@ class Usuario < ActiveRecord::Base
 
   validates :senha,
         #:exclude => %w[ asdf qwert zxcv ]
-  			length: { in: 5..15},
+  			length: { in: 5..32},
   			presence: {message: 'A senha deve ser preenchida'}
 
   validates :nascimento,
