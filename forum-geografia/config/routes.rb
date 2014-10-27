@@ -11,8 +11,12 @@ Rails.application.routes.draw do
   
   root 'home#index'
 
-  get 'login' => 'login#index' 
-  post 'login' => 'login#logar'
+  get 'login' => 'login#index', as: :login_form
+
+  post 'login/login', as: :login
+  post 'login/logout', as: :logout
+  #get 'login' => 'login#index' 
+  #post 'login' => 'login#logar'
   
       
   # The priority is based upon order of creation: first created -> highest priority.

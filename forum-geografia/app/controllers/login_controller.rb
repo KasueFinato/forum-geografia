@@ -3,7 +3,7 @@ class LoginController < ActionController::Base
 
 
 
-	def logar
+	def login
 		#redirect_to :usuarios
 		#render text: 'Oi mundo'
 		if @usuario = Usuario.find_by_login(params[:login])
