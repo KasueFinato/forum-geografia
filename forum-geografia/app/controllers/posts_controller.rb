@@ -22,8 +22,9 @@ class PostsController < ApplicationController
 	def create
 		usuario = Usuario.first #Usuario.new('Luiza Maria','luiza.kkkk@gmail.com','luizakkkk','lailai', '02-01-1997')
 		#assunto = Assunto.find(params[:])
-    	@post = Post.new(params.require(:post).permit(:conteudo))
+    	@post = Post.new(params.require(:post).permit(:conteudo, :tipo))
     	assunto = Assunto.new(params.require(:post).permit(:assunto))
+    	
     	
     	@post.data = DateTime.now()
     	

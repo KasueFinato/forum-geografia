@@ -15,14 +15,15 @@
 		</p>
 
         <%= f.label 'Outro assunto:' %> <font color="red">*Se vocẽ não achou nenhum assunto que se enquadre no seu post fique a vontade para cadastrar um novo.</font>
-        <%= f.text_field :novo_assunto, maxlength: 10000, size: "600x120" %>
+  
+ 
 
-
-        <%= radio_button_tag(:geo, "geofis") %>
+        <%= radio_button_tag(:tipo, "true") %>
 		<%= label_tag(:geofis, "Geografia Física") %>
-		<%= radio_button_tag(:geo, "geopol") %>
+		<%= radio_button_tag(:tipo, "false") %>
 		<%= label_tag(:geopol, "Geografia Política") %>
 
+        
 	</p>
 
 
