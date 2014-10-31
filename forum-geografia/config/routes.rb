@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   post 'login/login', as: :login
   post 'login/logout', as: :logout
+
+  get 'geografia(/:tipo)' => 'geografia#index', as: :geografia
   #get 'login' => 'login#index' 
   #post 'login' => 'login#logar'
   

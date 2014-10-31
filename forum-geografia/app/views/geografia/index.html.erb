@@ -1,0 +1,21 @@
+<% if session[:usuario] %>
+
+  Logado como  <%= session[:usuario] %>
+
+  <%= form_tag({controller: 'login', action: 'logout'}) do %>
+      <button>Logout</button>
+  <% end %>
+<% end %>
+
+
+<h3>Geografia <%= @tipo %></h3>
+
+	<% @posts.each do |post| %>
+    
+        <%= post.conteudo %>
+        <%= post.usuario.nome %>
+        <%= post.data %>
+
+    <% end %>
+
+    Tipo:     
