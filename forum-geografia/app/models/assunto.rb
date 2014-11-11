@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 class Assunto < ActiveRecord::Base
 	has_many :posts
 
