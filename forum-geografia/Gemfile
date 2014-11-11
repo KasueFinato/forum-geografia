@@ -41,3 +41,4 @@ gem 'spring',        group: :development
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
 
 gem 'twitter-bootstrap-rails'
+
