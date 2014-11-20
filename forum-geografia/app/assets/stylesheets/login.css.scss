@@ -2,6 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+h3 {
+  font-size: 15px;
+  text-align: center;
+}
 body {
   padding-top: 40px;
   padding-bottom: 40px;
@@ -41,3 +45,4 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
