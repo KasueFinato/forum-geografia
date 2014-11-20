@@ -7,7 +7,7 @@ class Post < ActiveRecord::Base
   validates :conteudo,
   			#format: { with: /\A[a-zA-Z]+\z/ },???????
   			length: { minimum: 5},
-  			presence: {message: 'O post deve ser preenchido'},
+  			presence: {message: 'O post deve ser preenchido'}
 
 
 end

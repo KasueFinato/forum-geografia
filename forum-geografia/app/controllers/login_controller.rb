@@ -3,7 +3,7 @@ require 'digest'
 class LoginController < ActionController::Base
 
 	def index
-
+		render layout: 'bootstrap'
 	end
 
 	def login
