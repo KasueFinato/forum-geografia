@@ -1,0 +1,45 @@
+<% if session[:usuario] %>
+
+  Logado como  <%= session[:usuario] %>
+
+  <%= form_tag({controller: 'login', action: 'logout'}) do %>
+      <button>Logout</button>
+  <% end %>
+<% end %>
+
+<div class="mask">
+    <div class="header">
+           <h2> Fórum geografia </h2>
+           
+  </div> 
+    <div class="colleft">
+          
+      <div class="col1">
+          <br><br><br><br><br><br><br><br><br>
+          <%= link_to "Geografia Fisica", '/geografia/fisica'%>
+          <br><br><br><br><br><br><br><br><br>
+          </div>
+      <div class="col2">
+      <br><br><br><br><br><br><br><br><br>
+           <%= link_to "Geografia humana", '/geografia/humana' %>
+      <br><br><br><br><br><br><br><br><br>
+      </div> 
+  </div>
+      <div class="footer">
+        <h1><%= link_to "Cadastrar-se", new_usuario_path %> <h1>
+      </div>
+    
+    </div>
+
+
+    
+	
+        
+      
+  
+  
+
+
+
+
+
