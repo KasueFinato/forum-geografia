@@ -1,5 +1,4 @@
 <h2>Novo Post</h2>
-
     
 
     <%= form_for @post do |f| %>
@@ -10,11 +9,13 @@
         </p>
 
         
-        <%= f.select :assunto, ([["globalização", "0"], ["rochas", "1"]])%>
-
+        <%= select_tag :assunto_id do  %>
+            <%= options_from_collection_for_select(@assuntos, :id, :assunto) %>
+        <% end %>
+        
 		</p>
 
-        <%= f.label 'Outro assunto:' %> <font color="red">*Se vocẽ não achou nenhum assunto que se enquadre no seu post fique a vontade para cadastrar um novo.</font>
+        <%= label_tag 'Outro assunto:' %> <font color="red">*Se vocẽ não achou nenhum assunto que se enquadre no seu post fique a vontade para cadastrar um novo.</font>
   
  
 

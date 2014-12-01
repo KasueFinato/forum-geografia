@@ -5,7 +5,7 @@ class CreatePosts < ActiveRecord::Migration
       t.datetime :data
       t.string :conteudo
       t.references :assunto, index: true
-
+      
       t.timestamps
     end
   end

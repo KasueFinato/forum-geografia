@@ -6,16 +6,24 @@
       <button>Logout</button>
   <% end %>
 <% end %>
+<%if @tipo=='fisica'
+	tipo = 'Física'
+end%>
 
+<%if @tipo=='humana'
+	tipo = 'Humana'
+end%>
 
-<h3>Geografia <%= @tipo %></h3>
+<h3>Geografia <%= tipo %></h3>
 
 	<% @posts.each do |post| %>
     
+    Postado por <%= post.usuario.nome %>, em <%= post.data %>
+        <br>
         <%= post.conteudo %>
-        <%= post.usuario.nome %>
-        <%= post.data %>
+        <p>
+        
 
     <% end %>
 
-    Tipo:     
+       

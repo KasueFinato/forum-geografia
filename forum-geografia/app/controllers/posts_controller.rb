@@ -17,19 +17,44 @@ class PostsController < ApplicationController
 	
 	def new
 		@post = Post.new()
+		@assuntos = Assunto.all
 	end
 
 	def create
+
+		@post = Post.new(params.require(:post).permit(:conteudo, :assunto_id))
+		
 		usuario = Usuario.first #Usuario.new('Luiza Maria','luiza.kkkk@gmail.com','luizakkkk','lailai', '02-01-1997')
 		#assunto = Assunto.find(params[:])
-    	@post = Post.new(params.require(:post).permit(:conteudo, :tipo))
-    	assunto = Assunto.new(params.require(:post).permit(:assunto))
+		outroassunto=params[:outroassunto]
     	
     	
+    	#assunto = Assunto.find(params[:assunto])
+    	tipo = params[:tipo]    	
+    	
+
     	@post.data = DateTime.now()
     	
     	@post.usuario = usuario
-    	@post.assunto = assunto
+
+    	if (outroassunto == '' or outroassunto == nil)
+
+	    	@post.assunto = assunto
+    
+	    else
+	    	outroassuntosalva= Assunto.new()
+	    	if tipo=='fisica'
+    			outroassuntosalva.tipo = 1
+    			outroassuntosalva.assunto = outroassunto
+    		end
+
+    		if tipo=='humana'
+    			outroassuntosalva.tipo = 2
+    			outroassuntosalva.assunto = outroassunto    		
+    		end
+    		outroassuntosalva.save
+	    	@post.assunto = outroassunto
+	    end
     	#@post.assunto = assunto
     	if @post.save
     		redirect_to :posts, notice: "#{@post.conteudo} inserido com sucesso" #não ta aparecendo
