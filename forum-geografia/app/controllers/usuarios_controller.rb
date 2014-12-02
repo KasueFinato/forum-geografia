@@ -27,6 +27,7 @@ class UsuariosController < ApplicationController
 
 	def new
 		@usuario = Usuario.new()
+		render layout: 'application'
 	end
 
 	def create

@@ -4,7 +4,7 @@ class HomeController < ApplicationController
 		
   	end
 
-  def testando
-  	render text: "teste, 1,2,3, teste som"
-  end
+  #def testando
+  #	render text: "teste, 1,2,3, teste som"
+  #end
 end
