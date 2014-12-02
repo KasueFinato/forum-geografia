@@ -35,6 +35,7 @@ class UsuariosController < ApplicationController
 
     	if @usuario.save
     		redirect_to :usuarios, notice: "#{@usuario.nome} cadastrado com sucesso" #não ta aparecendo
+    		UsuarioMailer.cadastrado(@usuario).deliver
     	else
       # This line overrides the default rendering behavior, which
       # would have been to render the "create" view.
