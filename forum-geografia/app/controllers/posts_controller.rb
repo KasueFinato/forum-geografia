@@ -80,7 +80,8 @@ class PostsController < ApplicationController
 		render :index
 	end
 
-	def mostrar
-		
+	def mcomentar
+		@post = Post.find params[:id]
+		render :comentar
 	end
 end

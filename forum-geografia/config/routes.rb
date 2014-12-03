@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   get 'posts' => 'posts#index'
   get 'posts/new' => 'posts#new'
   post 'posts' => 'posts#create'
-  
+  get '/posts/comentar' => 'posts#mcomentar'
+
   root 'home#index'
 
   get 'login' => 'login#index', as: :login_form
