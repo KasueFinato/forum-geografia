@@ -1,7 +1,7 @@
 <h3> Posts </h3>
 
-
-
+<%= link_to "Postar", "/posts/new" %>
+  
 
 <table>
   <thead>
@@ -19,8 +19,8 @@
         <td><%= post.conteudo %></td>
         <td><%= post.usuario.nome %></td>
         <td><%= post.data %></td>
-         <td>Tipo: <%= post.assunto.tipo %></td>
-
+        <td>Tipo: <%= post.assunto.tipo %></td>
+        
       </tr>
     <% end %>
   </tbody> 

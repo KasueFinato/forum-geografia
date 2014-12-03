@@ -79,4 +79,8 @@ class PostsController < ApplicationController
 		@usuarios = Usuario.where("nome like '%#{params[:pesquisa]}%'")
 		render :index
 	end
+
+	def mostrar
+		
+	end
 end
