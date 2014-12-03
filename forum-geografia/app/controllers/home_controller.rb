@@ -1,7 +1,7 @@
 # encoding: UTF-8
 class HomeController < ApplicationController
 	def index
-		
+	
   	end
 
   #def testando

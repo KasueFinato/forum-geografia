@@ -1,7 +1,7 @@
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
- *
+
  * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
  * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
  *
@@ -52,7 +52,7 @@
    width: 49.9%;
    left: 100.1%;
    background-color: #6b9cc9;
-   font-size: 18px
+   font-size: 28px
 }
 .col2{
    position: relative;
@@ -61,13 +61,13 @@
    width: 49.9%;
    left: 0.09999999999999573%;
    background-color: #6b9cc9;
-   font-size: 18px
+   font-size: 28px
 }
 .footer{
    float: left;
    width: 100%;
    background-color: #ffffff;
-   font-size:19px;
+   font-size:29px;
 
 }
 body {

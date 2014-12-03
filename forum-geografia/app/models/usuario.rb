@@ -25,8 +25,6 @@ class Usuario < ActiveRecord::Base
   			length: { in: 5..32},
   			presence: {message: 'A senha deve ser preenchida'}
 
-  validates :nascimento,
-  			presence: {message: 'A data de nascimento é obrigatória'}
 
   validate :email_formatado
 

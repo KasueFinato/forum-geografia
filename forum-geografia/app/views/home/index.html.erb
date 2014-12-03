@@ -29,7 +29,7 @@
   </head>
 
   <body>
-
+ <% if session[:usuario] %>
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -46,7 +46,11 @@
             <li><a href="#">Dashboard</a></li>
             <li><%= link_to "Cadastrar-se", new_usuario_path %></li>
             <li><a href="#">Profile</a></li>
-            <li><a href="#">Help</a></li>
+            <li><%= form_tag({controller: 'login', action: 'logout'}) do  %>
+
+            <button> logout </button>
+            
+            <% end %></li> 
           </ul>
           <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Search...">
@@ -54,7 +58,16 @@
         </div>
       </div>
     </nav>
+<div class="container">
+ 
+    <center>
+      <h1>Seja bem-vindo, <%= session[:usuario] %>!</h1>
+    </center>
 
+    
+  <% end %>
+
+</div>
     
           <h1 class="page-header"></h1>
 

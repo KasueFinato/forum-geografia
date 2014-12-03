@@ -6,11 +6,12 @@ class LoginController < ActionController::Base
 		render layout: 'bootstrap'
 	end
 
+
 	def login
 		u = Usuario.find_by_login_and_senha(params[:login], Digest::MD5.hexdigest(params[:senha]))
 		if u.nil?
-			flash[:error] = 'Nome ou senha inválidos' #flash não aparece
-			render :index
+			flash[:error] = 'Nome ou senha inválidos' #flash não aparece #tentar com notice************
+			render :index, layout: 'bootstrap'
 		else
 			session[:usuario] = u.nome
 			redirect_to root_path, notice: 'Logado com sucesso' #notice não aparece

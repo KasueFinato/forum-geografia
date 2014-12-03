@@ -18,7 +18,7 @@ class UsuariosController < ApplicationController
 
 	def update
 		@usuario = Usuario.find(params[:id])
-		if @usuario.update(params.require(:usuario).permit(:nome, :email, :login, :nascimento, :senha))
+		if @usuario.update(params.require(:usuario).permit(:nome, :email, :login,   :senha))
 			redirect_to :usuarios, notice: "#{@usuario.nome} atualizado com sucesso" #não ta aparecendo
     	else
       		render :edit
@@ -27,11 +27,11 @@ class UsuariosController < ApplicationController
 
 	def new
 		@usuario = Usuario.new()
-		render layout: 'application'
+		
 	end
 
 	def create
-    	@usuario = Usuario.new(params.require(:usuario).permit(:nome, :email, :login, :nascimento, :senha))
+    	@usuario = Usuario.new(params.require(:usuario).permit(:nome, :email, :login,   :senha))
     	@usuario.senha = Digest::MD5.hexdigest(@usuario.senha)
 
     	if @usuario.save

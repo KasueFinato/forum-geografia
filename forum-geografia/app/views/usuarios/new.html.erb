@@ -10,6 +10,7 @@
         <% end %>
     <% end %>
 
+    
 
     <%= form_for @usuario do |f| %>
 
@@ -31,10 +32,7 @@
         <%= f.password_field :senha, maxlength: 15, size: "15x3" %>
         </p>
 
-        <%= f.label 'Nascimento:' %>
-        <%= f.date_field :nascimento %>
-        </p>
-
+    
 
     <%= f.submit 'Salvar' %>
 

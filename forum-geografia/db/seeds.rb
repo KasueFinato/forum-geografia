@@ -6,18 +6,18 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-	Usuario.create nome: 'Hellen Barros', email: 'juliebcruz@brturbo.com.br', login: 'juliebcruz', senha: 'pb131811e11', nascimento: '29-08-1996'
+	Usuario.create nome: 'Hellen Barros', email: 'juliebcruz@brturbo.com.br', login: 'juliebcruz', senha: 'pb131811e11'
 
 	Usuario.create nome: 'Karoline Miki', 
 				   email: 'kasuefinato@gmail.com', 
 				   login: 'kasuemiki', 
-				   senha: 'chinaliexpres',
-				   nascimento: '01-03-1996'
+				   senha: 'chinaliexpres'
+				
 
 	Usuario.create nome: 'Luiza Santos', 
 				   email: 'luizaosorio@gmail.com', 
 				   login: 'luizaosorio', 
-				   senha: 'legginswhey',
-				   nascimento: '22-01-1997'
+				   senha: 'legginswhey'
+				  
 
-	@usuario = Usuario.new nome: 'Karoline Miki', email: 'kasuefinato@gmail.com', login: 'kasuemiki', senha: 'chinaliexpres', nascimento: '01-03-1996'
+	@usuario = Usuario.new nome: 'Karoline Miki', email: 'kasuefinato@gmail.com', login: 'kasuemiki', senha: 'chinaliexpres'
