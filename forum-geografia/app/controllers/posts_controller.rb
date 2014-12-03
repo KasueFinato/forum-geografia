@@ -29,8 +29,7 @@ class PostsController < ApplicationController
 		usuario = Usuario.first #Usuario.new('Luiza Maria','luiza.kkkk@gmail.com','luizakkkk','lailai', '02-01-1997')
 		#assunto = Assunto.find(params[:])
 		outroassunto=params[:outroassunto]
-    	
-    	
+    	 	
     	#assunto = Assunto.find(params[:assunto])
     	tipo = params[:tipo]    	
     	
@@ -47,18 +46,18 @@ class PostsController < ApplicationController
 
 	    	if tipo=='fisica'
     			outroassuntosalva.tipo = 1
-    			outroassuntosalva.assunto = outroassunto
     		end
 
     		if tipo=='humana'
     			outroassuntosalva.tipo = 2
-    			outroassuntosalva.assunto = outroassunto    		
     		end
 
+    		outroassuntosalva.assunto = outroassunto    		
     		outroassuntosalva.save
-	    	#x = Assunto.find_by_assunto ( outroassuntosalva.assunto )
-		    #@post.assunto = x.id
+	    	x = Assunto.find_by_assunto ("#{outroassuntosalva.assunto}")
+		    @post.assunto_id = x.id
 		    
+		    #redirect_to :usuarios
 	    end
     	#@post.assunto = assunto
     	if @post.save
