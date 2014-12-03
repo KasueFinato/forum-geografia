@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20141024110453) do
     t.string   "nome",       limit: 100
     t.string   "email",      limit: 140
     t.string   "login",      limit: 50
-    t.string   "senha",      limit: 15
+    t.string   "senha",      limit: 32
     t.date     "nascimento"
     t.boolean  "ativo"
     t.integer  "nivel_id"

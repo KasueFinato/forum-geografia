@@ -23,6 +23,8 @@ class PostsController < ApplicationController
 	def create
 
 		@post = Post.new(params.require(:post).permit(:conteudo, :assunto_id))
+		#@aluno = Aluno.new params.require(:aluno).
+		#		permit(:nome, :matricula, :senha, :email, :turma_id)
 		
 		usuario = Usuario.first #Usuario.new('Luiza Maria','luiza.kkkk@gmail.com','luizakkkk','lailai', '02-01-1997')
 		#assunto = Assunto.find(params[:])
@@ -32,17 +34,17 @@ class PostsController < ApplicationController
     	#assunto = Assunto.find(params[:assunto])
     	tipo = params[:tipo]    	
     	
-
     	@post.data = DateTime.now()
     	
     	@post.usuario = usuario
 
     	if (outroassunto == '' or outroassunto == nil)
-
-	    	@post.assunto = assunto
+    		#assunto da select
+	    	@post.assunto_id = params[:assunto_id]
     
 	    else
-	    	outroassuntosalva= Assunto.new()
+	    	outroassuntosalva = Assunto.new()
+
 	    	if tipo=='fisica'
     			outroassuntosalva.tipo = 1
     			outroassuntosalva.assunto = outroassunto
@@ -52,8 +54,11 @@ class PostsController < ApplicationController
     			outroassuntosalva.tipo = 2
     			outroassuntosalva.assunto = outroassunto    		
     		end
+
     		outroassuntosalva.save
-	    	@post.assunto = outroassunto
+	    	#x = Assunto.find_by_assunto ( outroassuntosalva.assunto )
+		    #@post.assunto = x.id
+		    
 	    end
     	#@post.assunto = assunto
     	if @post.save
