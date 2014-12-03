@@ -9,15 +9,24 @@
         </p>
 
         
-        <%= select_tag :assunto_id do  %>
-            <%= options_from_collection_for_select(@assuntos, :id, :assunto) %>
-        <% end %>
-        
-		</p>
+<!--    <%= select_tag :assunto_id do  %>
+            <%= options_from_collection_for_select( @assuntos, :id, :assunto) %>
+        <% end %> 
+-->     
+        Assunto:
+        <%= select_tag :assunto_id, options_from_collection_for_select( @assuntos, :id, :assunto) %>
 
-        <%= label_tag 'Outro assunto:' %> <font color="red">*Se vocẽ não achou nenhum assunto que se enquadre no seu post fique a vontade para cadastrar um novo.</font>
-  
- 
+        </p>
+
+        <font color="red">Se vocẽ não achou nenhum assunto que se enquadre no seu post fique a vontade para cadastrar um novo.</font>
+
+        </p>
+
+        <%= label_tag 'Outro assunto:' %> 
+         <input id="outroassunto" name="outroassunto" type="text" />
+         *tem que ter mais de 10 carac
+         
+         </p>
 
         <%= radio_button_tag(:tipo, "true") %>
 		<%= label_tag(:geofis, "Geografia Física") %>
@@ -26,10 +35,6 @@
 
         
 	</p>
-
-
-
-
 
     <%= f.submit 'Salvar' %>
 

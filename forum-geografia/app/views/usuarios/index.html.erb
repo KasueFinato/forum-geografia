@@ -14,9 +14,6 @@
       <tr>
         <td><%= usuario.nome %></td>
         <td><%= usuario.login %></td>
-        
-         <td><%= link_to 'Ver perfil', usuario %></td>
-         
 
       </tr>
     <% end %>
@@ -26,8 +23,7 @@
 <p>
 
 <form method="get" action='usuarios/pesquisar'>
-Pesquisa de usuarios por nome: 
-<input type="text" name="pesquisa" maxlength="100" size="60x12">
-
-<input type="submit" value="Pesquisar">
+  Pesquisa de usuarios por nome: 
+  <input type="text" name="pesquisa" maxlength="100" size="60x12">
+  <input type="submit" value="Pesquisar">
 </form>
