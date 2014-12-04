@@ -11,11 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141024110453) do
+ActiveRecord::Schema.define(version: 20141204142000) do
 
   create_table "assuntos", force: true do |t|
     t.string   "assunto"
     t.integer  "tipo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "comentarios", force: true do |t|
+    t.string   "comentario", limit: 140
+    t.integer  "likes"
+    t.integer  "usuario_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

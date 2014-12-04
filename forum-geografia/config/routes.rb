@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get 'posts' => 'posts#index'
   get 'posts/new' => 'posts#new'
   post 'posts' => 'posts#create'
-  get '/posts/comentar' => 'posts#mcomentar'
+  get '/posts/comentar' => 'posts#show_comentar'
   get 'posts/humana' => 'posts#show_humanas'
   get 'posts/fisica' => 'posts#show_fisicas'
 
