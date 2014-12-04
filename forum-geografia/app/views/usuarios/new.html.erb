@@ -1,40 +1,43 @@
 
-<h2>Novo Usuario</h2>
-
-    <% if @usuario.errors.any? %>
-
-        <% @usuario.errors.full_messages.each do |m| %>
-
-            <%= m %>
-
-        <% end %>
-    <% end %>
-
-    
-
-    <%= form_for @usuario do |f| %>
-
-        <%= f.label 'Nome:' %>
-        <%= f.text_field :nome, maxlength: 100, size: "60x12" %>
-
-        <p>
-        <%= f.label 'E-mail:' %>
-        <%= f.email_field :email, maxlength: 140, size: "60x12" %>
-        </p>
-
-        <p>
-        <%= f.label 'Login:' %>
-        <%= f.text_field :login, maxlength: 50, size: "30x6" %>
-        </p>
-
-        <p>
-        <%= f.label 'Senha:' %>
-        <%= f.password_field :senha, maxlength: 15, size: "15x3" %>
-        </p>
-
-    
-
-    <%= f.submit 'Salvar' %>
 
 
+<div class="jumbotron">
+<%= form_for(@usuario) do |f| %>
+  <% if @usuario.errors.any? %>
+    <div id="error_explanation">
+      <h3> Opa, algo deu errado: </h3>
+
+      <ul>
+      <% @usuario.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<h3>Novo Usuário</h3> <br><br>
+  <div class="field">
+    <%= f.label :nome %>
+    <%= f.text_field :nome, maxlength: 100, size: "30x6" %><br>
+  </div>
+  <div class="field">
+    <%= f.label :login %>
+    <%= f.text_field :login, maxlength: 50, size: "30x6" %><br>
+  </div>
+  <div class="field">
+  <%= f.label :senha %>
+        <%= f.password_field :senha, maxlength: 15, size: "30x6" %>
+  </div>
+    <div class="field">
+    <%= f.label :email %>
+     <%= f.email_field :email, maxlength: 140, size: "30x6" %><br>
+  </div>
+  <br>
+
+  <div class="actions">
+<br>
+    <%= f.submit "Cadastrar" %>
+    <br>
+  </div>
+  <br>
 <% end %>
+</div>
