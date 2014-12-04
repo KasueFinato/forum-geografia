@@ -5,44 +5,37 @@
 
     <%= form_for @post do |f| %>
 
-       <%= f.label 'Conteúdo:' %>
-        <%= f.text_field :conteudo, maxlength: 10000, size: "600x120" %>
+    <div class="container" id="main">
+    <div class="row">
+      <div class="col-md-4 col-sm-6">
+          <div class="panel panel-default">
+            <form action="/posts/comentar" method="get">
+              <div class="panel-heading"> <h4>Novo</h4></div>
+                <div class="panel-body">
+                      <div class="list-group">
+                        <a class="list-group-item"> <%= f.label 'Conteúdo:' %>
+                            <%= f.text_field :conteudo, maxlength: 10000, size: "45x120" %></a>
+                        <a class="list-group-item">Assunto:
+                            <%= select_tag :assunto_id, options_from_collection_for_select( @assuntos, :id, :assunto) %></a>
+                        <a class="list-group-item"> <%= label_tag 'Outro assunto:' %> 
+                         <input id="outroassunto" name="outroassunto" type="text" /><br>*Cadastre um novo assunto caso não encontre nos já cadastrados</a>
 
-        </p>
-
-        
-<!--    <%= select_tag :assunto_id do  %>
-            <%= options_from_collection_for_select( @assuntos, :id, :assunto) %>
-        <% end %> 
--->     
-        Assunto:
-        
-        <%= select_tag :assunto_id, options_from_collection_for_select( @assuntos, :id, :assunto) %>
-
-        </p>
-
-        <font color="red">Se vocẽ não achou nenhum assunto que se enquadre no seu post fique a vontade para cadastrar um novo.</font>
-
-        </p>
-
-        <%= label_tag 'Outro assunto:' %> 
-         <input id="outroassunto" name="outroassunto" type="text" />
-         *tem que ter mais de 10 carac
-         
-         </p>
-
-        <%= radio_button_tag(:tipo, "fisica") %>
-		<%= label_tag(:geofis, "Geografia Física") %>
-		<%= radio_button_tag(:tipo, "humana") %>
-		<%= label_tag(:geopol, "Geografia Humana") %>
-
-        
-	</p>
-
-    <%= f.submit 'Salvar' %>
+                        <a class="list-group-item"><%= radio_button_tag(:tipo, "fisica") %>
+                            <%= label_tag(:geofis, "Geografia Física") %>
+                            <%= radio_button_tag(:tipo, "humana") %>
+                            <%= label_tag(:geopol, "Geografia Humana") %></a>
+                    <%= f.submit 'Salvar' %>
+                        </form>
+                      </div>
+                </div>
+              </div>
+      </div>
+    </div>
+  </div>
+    <% end %>
 
 
-<% end %>
 <%else%>
 <h4> Você precisa estar logado para postar</h4>
 <% end %>
+      

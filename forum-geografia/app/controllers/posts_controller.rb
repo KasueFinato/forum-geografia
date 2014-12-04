@@ -63,7 +63,7 @@ class PostsController < ApplicationController
     	#@post.assunto = assunto
     	
     	if @post.save
-    		redirect_to :posts, notice: "#{@post.conteudo} inserido com sucesso" #não ta aparecendo
+    		redirect_to :posts, notice: "Novo post inserido com sucesso" #não ta aparecendo
     	else
       # This line overrides the default rendering behavior, which
       # would have been to render the "create" view.

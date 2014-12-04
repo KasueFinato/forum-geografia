@@ -13,7 +13,7 @@
     <% @usuarios.each do |usuario| %>
       <tr>
         <td><%= usuario.nome %></td>
-        <td><%= usuario.login %></td>
+        
         <td><%= link_to "Ver Perfil", usuario_path(usuario) %> </td>
       </tr>
     <% end %>

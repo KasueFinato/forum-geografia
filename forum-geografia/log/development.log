@@ -38652,3 +38652,4164 @@ Migrating to CreateComentarios (20141204142000)
             WHERE name='index_usuarios_on_nivel_id' AND type='index'
 [0m
 >>>>>>> 9b46ff821943f74d8af1d02062aa147d8056732f
+  [1m[36m (15.6ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (15.6ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.0ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateNiveis (20140912013559)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  CREATE TABLE "niveis" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "nivel" varchar(50), "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140912013559"]]
+  [1m[35m (15.6ms)[0m  commit transaction
+Migrating to CreateUsuarios (20140912013921)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  CREATE TABLE "usuarios" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "nome" varchar(100), "email" varchar(140), "login" varchar(50), "senha" varchar(32), "nascimento" date, "ativo" boolean, "nivel_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (0.0ms)[0m  [1mCREATE  INDEX "index_usuarios_on_nivel_id" ON "usuarios" ("nivel_id")[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140912013921"]]
+  [1m[36m (0.0ms)[0m  [1mcommit transaction[0m
+Migrating to CreateAssuntos (20141017144249)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mCREATE TABLE "assuntos" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "assunto" varchar(255), "tipo" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20141017144249"]]
+  [1m[36m (15.6ms)[0m  [1mcommit transaction[0m
+Migrating to CreatePosts (20141024110453)
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mCREATE TABLE "posts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "usuario_id" integer, "data" datetime, "conteudo" varchar(255), "assunto_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.0ms)[0m  CREATE  INDEX "index_posts_on_usuario_id" ON "posts" ("usuario_id")
+  [1m[36m (0.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_posts_on_usuario_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_posts_on_usuario_id' AND type='index'
+[0m
+  [1m[35m (0.0ms)[0m  CREATE  INDEX "index_posts_on_assunto_id" ON "posts" ("assunto_id")
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141024110453"]]
+  [1m[35m (0.0ms)[0m  commit transaction
+Migrating to CreateComentarios (20141204142000)
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  CREATE TABLE "comentarios" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "comentario" varchar(140), "likes" integer, "usuario_id" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36mSQL (15.6ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20141204142000"]]
+  [1m[35m (0.0ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_posts_on_assunto_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_posts_on_assunto_id' AND type='index'
+
+  [1m[36m (0.0ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_posts_on_usuario_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_posts_on_usuario_id' AND type='index'
+[0m
+  [1m[35m (0.0ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_usuarios_on_nivel_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_usuarios_on_nivel_id' AND type='index'
+
+
+
+Started GET "/posts/" for 127.0.0.1 at 2014-12-04 13:05:18 -0200
+  [1m[36mActiveRecord::SchemaMigration Load (2.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by PostsController#index as HTML
+  [1m[35mPost Load (1.0ms)[0m  SELECT "posts".* FROM "posts"
+  Rendered posts/index.html.erb within layouts/application (65.0ms)
+Completed 200 OK in 3386ms (Views: 3199.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2014-12-04 13:05:25 -0200
+
+
+Started GET "/assets/geografia.css?body=1" for 127.0.0.1 at 2014-12-04 13:05:26 -0200
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2014-12-04 13:05:26 -0200
+
+
+Started GET "/assets/comentario.css?body=1" for 127.0.0.1 at 2014-12-04 13:05:26 -0200
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-12-04 13:05:26 -0200
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2014-12-04 13:05:26 -0200
+
+
+Started GET "/assets/home2.css?body=1" for 127.0.0.1 at 2014-12-04 13:05:26 -0200
+
+
+Started GET "/assets/login.css?body=1" for 127.0.0.1 at 2014-12-04 13:05:27 -0200
+
+
+Started GET "/assets/usuarios.css?body=1" for 127.0.0.1 at 2014-12-04 13:05:27 -0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-04 13:05:27 -0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-04 13:05:27 -0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-04 13:05:27 -0200
+
+
+Started GET "/assets/twitter/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-12-04 13:05:27 -0200
+
+
+Started GET "/assets/twitter/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-12-04 13:05:27 -0200
+
+
+Started GET "/assets/twitter/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-12-04 13:05:28 -0200
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-12-04 13:05:28 -0200
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-12-04 13:05:28 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-12-04 13:05:28 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-12-04 13:05:28 -0200
+
+
+Started GET "/assets/twitter/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-12-04 13:05:28 -0200
+
+
+Started GET "/assets/twitter/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-12-04 13:05:28 -0200
+
+
+Started GET "/assets/twitter/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-12-04 13:05:28 -0200
+
+
+Started GET "/assets/twitter/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-12-04 13:05:28 -0200
+
+
+Started GET "/assets/twitter/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-12-04 13:05:28 -0200
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:05:29 -0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-04 13:05:29 -0200
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:05:29 -0200
+
+
+Started GET "/assets/comentario.js?body=1" for 127.0.0.1 at 2014-12-04 13:05:29 -0200
+
+
+Started GET "/assets/geografia.js?body=1" for 127.0.0.1 at 2014-12-04 13:05:29 -0200
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-12-04 13:05:29 -0200
+
+
+Started GET "/assets/login.js?body=1" for 127.0.0.1 at 2014-12-04 13:05:29 -0200
+
+
+Started GET "/assets/usuarios.js?body=1" for 127.0.0.1 at 2014-12-04 13:05:29 -0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-04 13:05:29 -0200
+
+
+Started GET "/posts/" for 127.0.0.1 at 2014-12-04 13:06:13 -0200
+Processing by PostsController#index as HTML
+  [1m[36mPost Load (0.0ms)[0m  [1mSELECT "posts".* FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (7.5ms)
+Completed 200 OK in 543ms (Views: 540.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-12-04 13:06:14 -0200
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2014-12-04 13:06:14 -0200
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2014-12-04 13:06:14 -0200
+
+
+Started GET "/assets/twitter/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-12-04 13:06:14 -0200
+
+
+Started GET "/assets/twitter/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-12-04 13:06:14 -0200
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2014-12-04 13:06:14 -0200
+
+
+Started GET "/assets/comentario.css?body=1" for 127.0.0.1 at 2014-12-04 13:06:14 -0200
+
+
+Started GET "/assets/geografia.css?body=1" for 127.0.0.1 at 2014-12-04 13:06:14 -0200
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-12-04 13:06:14 -0200
+
+
+Started GET "/assets/home2.css?body=1" for 127.0.0.1 at 2014-12-04 13:06:14 -0200
+
+
+Started GET "/assets/login.css?body=1" for 127.0.0.1 at 2014-12-04 13:06:15 -0200
+
+
+Started GET "/assets/usuarios.css?body=1" for 127.0.0.1 at 2014-12-04 13:06:15 -0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-04 13:06:15 -0200
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-12-04 13:06:15 -0200
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-12-04 13:06:15 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-12-04 13:06:15 -0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-04 13:06:15 -0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-04 13:06:15 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-12-04 13:06:15 -0200
+
+
+Started GET "/assets/twitter/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-12-04 13:06:15 -0200
+
+
+Started GET "/assets/twitter/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-12-04 13:06:15 -0200
+
+
+Started GET "/assets/twitter/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-12-04 13:06:15 -0200
+
+
+Started GET "/assets/twitter/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-12-04 13:06:15 -0200
+
+
+Started GET "/assets/twitter/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-12-04 13:06:15 -0200
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:06:16 -0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-04 13:06:16 -0200
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:06:16 -0200
+
+
+Started GET "/assets/comentario.js?body=1" for 127.0.0.1 at 2014-12-04 13:06:16 -0200
+
+
+Started GET "/assets/geografia.js?body=1" for 127.0.0.1 at 2014-12-04 13:06:16 -0200
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-12-04 13:06:16 -0200
+
+
+Started GET "/assets/login.js?body=1" for 127.0.0.1 at 2014-12-04 13:06:16 -0200
+
+
+Started GET "/assets/usuarios.js?body=1" for 127.0.0.1 at 2014-12-04 13:06:16 -0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-04 13:06:16 -0200
+
+
+Started GET "/assets/favicon.ico" for 127.0.0.1 at 2014-12-04 13:06:17 -0200
+
+
+Started GET "/posts/" for 127.0.0.1 at 2014-12-04 13:08:14 -0200
+Processing by PostsController#index as HTML
+  [1m[35mPost Load (2.5ms)[0m  SELECT "posts".* FROM "posts"
+  Rendered posts/index.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 498ms (Views: 492.5ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2014-12-04 13:08:14 -0200
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2014-12-04 13:08:14 -0200
+
+
+Started GET "/assets/geografia.css?body=1" for 127.0.0.1 at 2014-12-04 13:08:14 -0200
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-12-04 13:08:15 -0200
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2014-12-04 13:08:15 -0200
+
+
+Started GET "/assets/comentario.css?body=1" for 127.0.0.1 at 2014-12-04 13:08:15 -0200
+
+
+Started GET "/assets/home2.css?body=1" for 127.0.0.1 at 2014-12-04 13:08:15 -0200
+
+
+Started GET "/assets/login.css?body=1" for 127.0.0.1 at 2014-12-04 13:08:15 -0200
+
+
+Started GET "/assets/usuarios.css?body=1" for 127.0.0.1 at 2014-12-04 13:08:15 -0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-04 13:08:15 -0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:15 -0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:15 -0200
+
+
+Started GET "/assets/twitter/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:15 -0200
+
+
+Started GET "/assets/twitter/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:15 -0200
+
+
+Started GET "/assets/twitter/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:15 -0200
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:15 -0200
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:15 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:15 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:16 -0200
+
+
+Started GET "/assets/twitter/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:16 -0200
+
+
+Started GET "/assets/twitter/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:16 -0200
+
+
+Started GET "/assets/twitter/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:16 -0200
+
+
+Started GET "/assets/twitter/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:16 -0200
+
+
+Started GET "/assets/twitter/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:16 -0200
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:16 -0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:16 -0200
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:16 -0200
+
+
+Started GET "/assets/comentario.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:16 -0200
+
+
+Started GET "/assets/geografia.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:16 -0200
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:16 -0200
+
+
+Started GET "/assets/login.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:16 -0200
+
+
+Started GET "/assets/usuarios.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:16 -0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:17 -0200
+
+
+Started GET "/assets/favicon.ico" for 127.0.0.1 at 2014-12-04 13:08:17 -0200
+
+
+Started GET "/posts" for 127.0.0.1 at 2014-12-04 13:08:22 -0200
+Processing by PostsController#index as HTML
+  [1m[36mPost Load (2.5ms)[0m  [1mSELECT "posts".* FROM "posts"[0m
+  Rendered posts/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 478ms (Views: 472.5ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/assets/twitter/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:23 -0200
+
+
+Started GET "/assets/twitter/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:23 -0200
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:23 -0200
+
+
+Started GET "/assets/twitter/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:23 -0200
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:23 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:23 -0200
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2014-12-04 13:08:23 -0200
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2014-12-04 13:08:23 -0200
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2014-12-04 13:08:23 -0200
+
+
+Started GET "/assets/comentario.css?body=1" for 127.0.0.1 at 2014-12-04 13:08:23 -0200
+
+
+Started GET "/assets/geografia.css?body=1" for 127.0.0.1 at 2014-12-04 13:08:23 -0200
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-12-04 13:08:23 -0200
+
+
+Started GET "/assets/home2.css?body=1" for 127.0.0.1 at 2014-12-04 13:08:23 -0200
+
+
+Started GET "/assets/login.css?body=1" for 127.0.0.1 at 2014-12-04 13:08:23 -0200
+
+
+Started GET "/assets/usuarios.css?body=1" for 127.0.0.1 at 2014-12-04 13:08:23 -0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-04 13:08:24 -0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:24 -0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:24 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:24 -0200
+
+
+Started GET "/assets/twitter/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:24 -0200
+
+
+Started GET "/assets/twitter/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:24 -0200
+
+
+Started GET "/assets/twitter/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:24 -0200
+
+
+Started GET "/assets/twitter/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:24 -0200
+
+
+Started GET "/assets/twitter/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:24 -0200
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:24 -0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:24 -0200
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:24 -0200
+
+
+Started GET "/assets/comentario.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:24 -0200
+
+
+Started GET "/assets/geografia.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:25 -0200
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:25 -0200
+
+
+Started GET "/assets/login.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:25 -0200
+
+
+Started GET "/assets/usuarios.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:25 -0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:25 -0200
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2014-12-04 13:08:28 -0200
+Processing by PostsController#new as HTML
+  [1m[35mAssunto Load (0.0ms)[0m  SELECT "assuntos".* FROM "assuntos"
+  Rendered posts/new.html.erb within layouts/application (234.0ms)
+Completed 200 OK in 764ms (Views: 686.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/posts" for 127.0.0.1 at 2014-12-04 13:08:40 -0200
+Processing by PostsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hMGK3Djz2Zlz0wo9tSpCug9AYyGWm02uNC2hY/bLVzs=", "post"=>{"conteudo"=>"PIOOIIOOIOIOIIOIOOIIOI"}, "outroassunto"=>"badiuahdieh", "tipo"=>"humana", "commit"=>"Salvar"}
+  [1m[36mUsuario Load (2.5ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1[0m  [["id", 6]]
+Completed 404 Not Found in 68ms
+
+ActiveRecord::RecordNotFound (Couldn't find Usuario with 'id'=6):
+  app/controllers/posts_controller.rb:29:in `create'
+
+
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.5ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (5.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (327.5ms)
+
+
+Started POST "/login/logout" for 127.0.0.1 at 2014-12-04 13:08:49 -0200
+Processing by LoginController#logout as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hMGK3Djz2Zlz0wo9tSpCug9AYyGWm02uNC2hY/bLVzs="}
+Redirected to http://localhost:3000/
+Completed 302 Found in 3ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-04 13:08:49 -0200
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 535ms (Views: 535.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2014-12-04 13:08:50 -0200
+
+
+Started GET "/assets/twitter/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:50 -0200
+
+
+Started GET "/assets/twitter/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:50 -0200
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:50 -0200
+
+
+Started GET "/assets/twitter/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:50 -0200
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2014-12-04 13:08:50 -0200
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2014-12-04 13:08:50 -0200
+
+
+Started GET "/assets/comentario.css?body=1" for 127.0.0.1 at 2014-12-04 13:08:50 -0200
+
+
+Started GET "/assets/geografia.css?body=1" for 127.0.0.1 at 2014-12-04 13:08:50 -0200
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-12-04 13:08:50 -0200
+
+
+Started GET "/assets/home2.css?body=1" for 127.0.0.1 at 2014-12-04 13:08:50 -0200
+
+
+Started GET "/assets/login.css?body=1" for 127.0.0.1 at 2014-12-04 13:08:51 -0200
+
+
+Started GET "/assets/usuarios.css?body=1" for 127.0.0.1 at 2014-12-04 13:08:51 -0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-04 13:08:51 -0200
+
+
+Started GET "/dist/css/bootstrap.min.css" for 127.0.0.1 at 2014-12-04 13:08:51 -0200
+
+ActionController::RoutingError (No route matches [GET] "/dist/css/bootstrap.min.css"):
+  actionpack (4.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.5) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.5) lib/rails/engine.rb:514:in `call'
+  railties (4.1.5) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.5ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (5.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/routes/_table.html.erb (30.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (555.0ms)
+
+
+Started GET "/dashboard.css" for 127.0.0.1 at 2014-12-04 13:08:52 -0200
+
+ActionController::RoutingError (No route matches [GET] "/dashboard.css"):
+  actionpack (4.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.5) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.5) lib/rails/engine.rb:514:in `call'
+  railties (4.1.5) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.5ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (5.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/routes/_table.html.erb (2.5ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (427.5ms)
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:52 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:52 -0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:52 -0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:52 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:52 -0200
+
+
+Started GET "/assets/twitter/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:52 -0200
+
+
+Started GET "/assets/twitter/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:53 -0200
+
+
+Started GET "/assets/twitter/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:53 -0200
+
+
+Started GET "/assets/twitter/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:53 -0200
+
+
+Started GET "/assets/twitter/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:53 -0200
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:53 -0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:53 -0200
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:53 -0200
+
+
+Started GET "/assets/comentario.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:53 -0200
+
+
+Started GET "/assets/geografia.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:53 -0200
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:53 -0200
+
+
+Started GET "/assets/login.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:53 -0200
+
+
+Started GET "/assets/usuarios.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:53 -0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-04 13:08:53 -0200
+
+
+Started GET "/assets/js/ie-emulation-modes-warning.js" for 127.0.0.1 at 2014-12-04 13:08:53 -0200
+
+ActionController::RoutingError (No route matches [GET] "/assets/js/ie-emulation-modes-warning.js"):
+  actionpack (4.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.5) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.5) lib/rails/engine.rb:514:in `call'
+  railties (4.1.5) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (5.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/routes/_table.html.erb (5.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (387.5ms)
+
+
+Started GET "/dist/js/bootstrap.min.js" for 127.0.0.1 at 2014-12-04 13:08:54 -0200
+
+ActionController::RoutingError (No route matches [GET] "/dist/js/bootstrap.min.js"):
+  actionpack (4.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.5) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.5) lib/rails/engine.rb:514:in `call'
+  railties (4.1.5) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.5ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (5.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/routes/_table.html.erb (5.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (397.5ms)
+
+
+Started GET "/assets/js/docs.min.js" for 127.0.0.1 at 2014-12-04 13:08:55 -0200
+
+ActionController::RoutingError (No route matches [GET] "/assets/js/docs.min.js"):
+  actionpack (4.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.5) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.5) lib/rails/engine.rb:514:in `call'
+  railties (4.1.5) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.5ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (5.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/routes/_table.html.erb (2.5ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (415.0ms)
+
+
+Started GET "/assets/js/ie10-viewport-bug-workaround.js" for 127.0.0.1 at 2014-12-04 13:08:55 -0200
+
+ActionController::RoutingError (No route matches [GET] "/assets/js/ie10-viewport-bug-workaround.js"):
+  actionpack (4.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.5) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.5) lib/rails/engine.rb:514:in `call'
+  railties (4.1.5) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (5.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/routes/_table.html.erb (2.5ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (380.0ms)
+
+
+Started GET "/assets/geografia_fisica.png" for 127.0.0.1 at 2014-12-04 13:08:56 -0200
+
+
+Started GET "/usuarios/new" for 127.0.0.1 at 2014-12-04 13:08:56 -0200
+Processing by UsuariosController#new as HTML
+  Rendered usuarios/new.html.erb within layouts/application (80.0ms)
+Completed 200 OK in 573ms (Views: 570.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/geografia_humana.png" for 127.0.0.1 at 2014-12-04 13:08:57 -0200
+
+
+Started POST "/usuarios" for 127.0.0.1 at 2014-12-04 13:09:12 -0200
+Processing by UsuariosController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"lvew6LGAggSbWrGAAKAAqk3gZ/Zgc3MaK8VMhAcZEuw=", "usuario"=>{"nome"=>"Julie Cruz", "login"=>"juliebcruz", "senha"=>"ju2908", "email"=>"juliebcruzz@gmail.com"}, "commit"=>"Cadastrar"}
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mUsuario Exists (2.5ms)[0m  [1mSELECT  1 AS one FROM "usuarios"  WHERE "usuarios"."email" = 'juliebcruzz@gmail.com' LIMIT 1[0m
+  [1m[35mUsuario Exists (0.0ms)[0m  SELECT  1 AS one FROM "usuarios"  WHERE "usuarios"."login" = 'juliebcruz' LIMIT 1
+Binary data inserted for `string` type on column `senha`
+  [1m[36mSQL (2.5ms)[0m  [1mINSERT INTO "usuarios" ("created_at", "email", "login", "nome", "senha", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["created_at", "2014-12-04 15:09:12.996409"], ["email", "juliebcruzz@gmail.com"], ["login", "juliebcruz"], ["nome", "Julie Cruz"], ["senha", "f704c0e8f179abae4e1d5926d27758a8"], ["updated_at", "2014-12-04 15:09:12.996409"]]
+  [1m[35m (10.0ms)[0m  commit transaction
+Redirected to http://localhost:3000/login
+  Rendered usuario_mailer/cadastrado.html.erb (2.5ms)
+
+UsuarioMailer#cadastrado: processed outbound mail in 205.0ms
+
+Sent mail to juliebcruzz@gmail.com (5748.6ms)
+Date: Thu, 04 Dec 2014 13:09:13 -0200
+From: forum.geografia.ifrs@gmail.com
+To: juliebcruzz@gmail.com
+Message-ID: <548079194ddc1_147c1d6f094113d6@Inara-PC.mail>
+Subject: =?UTF-8?Q?[FG]Confirma=C3=A7=C3=A3o_de_seu_cadastro?=
+Mime-Version: 1.0
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<h1>Bem-vindo ao F=C3=B3rum Geografia</h1>
+
+<p> Email de confirma=C3=A7=C3=A3o de cadastro. </p>
+
+<p> Obrigada por cadastrar-se em nosso f=C3=B3rum. </p>
+<br> <br>
+ =
+
+
+<br><br><br><br><br><br>
+<p>  Email autom=C3=A1tico, n=C3=A3o responda.</p>
+
+Completed 302 Found in 6196ms (ActiveRecord: 15.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2014-12-04 13:09:19 -0200
+Processing by LoginController#index as HTML
+  Rendered login/index.html.erb within layouts/bootstrap (5.0ms)
+Completed 200 OK in 463ms (Views: 462.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2014-12-04 13:09:19 -0200
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2014-12-04 13:09:19 -0200
+
+
+Started GET "/assets/comentario.css?body=1" for 127.0.0.1 at 2014-12-04 13:09:19 -0200
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2014-12-04 13:09:20 -0200
+
+
+Started GET "/assets/geografia.css?body=1" for 127.0.0.1 at 2014-12-04 13:09:20 -0200
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-12-04 13:09:20 -0200
+
+
+Started GET "/assets/home2.css?body=1" for 127.0.0.1 at 2014-12-04 13:09:20 -0200
+
+
+Started GET "/assets/login.css?body=1" for 127.0.0.1 at 2014-12-04 13:09:20 -0200
+
+
+Started GET "/assets/usuarios.css?body=1" for 127.0.0.1 at 2014-12-04 13:09:20 -0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-04 13:09:20 -0200
+
+
+Started GET "/assets/twitter/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:20 -0200
+
+
+Started GET "/assets/twitter/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:20 -0200
+
+
+Started GET "/assets/twitter/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:20 -0200
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:20 -0200
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:20 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:20 -0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:20 -0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:20 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:21 -0200
+
+
+Started GET "/assets/twitter/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:21 -0200
+
+
+Started GET "/assets/twitter/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:21 -0200
+
+
+Started GET "/assets/twitter/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:21 -0200
+
+
+Started GET "/assets/twitter/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:21 -0200
+
+
+Started GET "/assets/twitter/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:21 -0200
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:21 -0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:21 -0200
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:21 -0200
+
+
+Started GET "/assets/comentario.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:21 -0200
+
+
+Started GET "/assets/geografia.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:21 -0200
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:21 -0200
+
+
+Started GET "/assets/login.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:21 -0200
+
+
+Started GET "/assets/usuarios.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:21 -0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:21 -0200
+
+
+Started POST "/login/login" for 127.0.0.1 at 2014-12-04 13:09:28 -0200
+Processing by LoginController#login as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"lvew6LGAggSbWrGAAKAAqk3gZ/Zgc3MaK8VMhAcZEuw=", "login"=>"juliebcruz", "senha"=>"ju2908"}
+  [1m[36mUsuario Load (2.5ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."login" = 'juliebcruz' AND "usuarios"."senha" = 'f704c0e8f179abae4e1d5926d27758a8' LIMIT 1[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 75ms (ActiveRecord: 2.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-12-04 13:09:28 -0200
+Processing by HomeController#index as HTML
+  Rendered home/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 520ms (Views: 520.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2014-12-04 13:09:29 -0200
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2014-12-04 13:09:29 -0200
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2014-12-04 13:09:29 -0200
+
+
+Started GET "/assets/comentario.css?body=1" for 127.0.0.1 at 2014-12-04 13:09:29 -0200
+
+
+Started GET "/assets/geografia.css?body=1" for 127.0.0.1 at 2014-12-04 13:09:30 -0200
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-12-04 13:09:30 -0200
+
+
+Started GET "/assets/home2.css?body=1" for 127.0.0.1 at 2014-12-04 13:09:30 -0200
+
+
+Started GET "/assets/login.css?body=1" for 127.0.0.1 at 2014-12-04 13:09:30 -0200
+
+
+Started GET "/assets/usuarios.css?body=1" for 127.0.0.1 at 2014-12-04 13:09:30 -0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-04 13:09:30 -0200
+
+
+Started GET "/dist/css/bootstrap.min.css" for 127.0.0.1 at 2014-12-04 13:09:30 -0200
+
+ActionController::RoutingError (No route matches [GET] "/dist/css/bootstrap.min.css"):
+  actionpack (4.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.5) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.5) lib/rails/engine.rb:514:in `call'
+  railties (4.1.5) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (5.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/routes/_table.html.erb (2.5ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (390.0ms)
+
+
+Started GET "/dashboard.css" for 127.0.0.1 at 2014-12-04 13:09:31 -0200
+
+ActionController::RoutingError (No route matches [GET] "/dashboard.css"):
+  actionpack (4.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.5) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.5) lib/rails/engine.rb:514:in `call'
+  railties (4.1.5) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (7.5ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/routes/_table.html.erb (5.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (382.5ms)
+
+
+Started GET "/assets/twitter/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:31 -0200
+
+
+Started GET "/assets/twitter/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:31 -0200
+
+
+Started GET "/assets/twitter/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:31 -0200
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:31 -0200
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:31 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:31 -0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:32 -0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:32 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:32 -0200
+
+
+Started GET "/assets/twitter/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:32 -0200
+
+
+Started GET "/assets/twitter/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:32 -0200
+
+
+Started GET "/assets/twitter/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:32 -0200
+
+
+Started GET "/assets/twitter/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:32 -0200
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:32 -0200
+
+
+Started GET "/assets/twitter/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:32 -0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:32 -0200
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:32 -0200
+
+
+Started GET "/assets/comentario.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:32 -0200
+
+
+Started GET "/assets/geografia.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:32 -0200
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:33 -0200
+
+
+Started GET "/assets/login.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:33 -0200
+
+
+Started GET "/assets/usuarios.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:33 -0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:33 -0200
+
+
+Started GET "/assets/js/ie-emulation-modes-warning.js" for 127.0.0.1 at 2014-12-04 13:09:33 -0200
+
+ActionController::RoutingError (No route matches [GET] "/assets/js/ie-emulation-modes-warning.js"):
+  actionpack (4.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.5) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.5) lib/rails/engine.rb:514:in `call'
+  railties (4.1.5) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.5ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (7.5ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/routes/_table.html.erb (2.5ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (390.0ms)
+
+
+Started GET "/dist/js/bootstrap.min.js" for 127.0.0.1 at 2014-12-04 13:09:33 -0200
+
+ActionController::RoutingError (No route matches [GET] "/dist/js/bootstrap.min.js"):
+  actionpack (4.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.5) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.5) lib/rails/engine.rb:514:in `call'
+  railties (4.1.5) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.5ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (5.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/routes/_table.html.erb (5.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (380.0ms)
+
+
+Started GET "/assets/js/docs.min.js" for 127.0.0.1 at 2014-12-04 13:09:34 -0200
+
+ActionController::RoutingError (No route matches [GET] "/assets/js/docs.min.js"):
+  actionpack (4.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.5) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.5) lib/rails/engine.rb:514:in `call'
+  railties (4.1.5) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (5.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/routes/_table.html.erb (5.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (390.0ms)
+
+
+Started GET "/assets/js/ie10-viewport-bug-workaround.js" for 127.0.0.1 at 2014-12-04 13:09:35 -0200
+
+ActionController::RoutingError (No route matches [GET] "/assets/js/ie10-viewport-bug-workaround.js"):
+  actionpack (4.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.1.5) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.1.5) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.1.5) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.1.5) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.5.2) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.5.2) lib/rack/runtime.rb:17:in `call'
+  activesupport (4.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:26:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  actionpack (4.1.5) lib/action_dispatch/middleware/static.rb:64:in `call'
+  rack (1.5.2) lib/rack/sendfile.rb:112:in `call'
+  railties (4.1.5) lib/rails/engine.rb:514:in `call'
+  railties (4.1.5) lib/rails/application.rb:144:in `call'
+  rack (1.5.2) lib/rack/lock.rb:17:in `call'
+  rack (1.5.2) lib/rack/content_length.rb:14:in `call'
+  rack (1.5.2) lib/rack/handler/webrick.rb:60:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  C:/RailsInstaller/Ruby1.9.3/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/routes/_route.html.erb (7.5ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/routes/_table.html.erb (2.5ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (407.5ms)
+
+
+Started GET "/assets/geografia_fisica.png" for 127.0.0.1 at 2014-12-04 13:09:35 -0200
+
+
+Started GET "/assets/geografia_humana.png" for 127.0.0.1 at 2014-12-04 13:09:35 -0200
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2014-12-04 13:09:36 -0200
+Processing by PostsController#new as HTML
+  [1m[35mAssunto Load (0.0ms)[0m  SELECT "assuntos".* FROM "assuntos"
+  Rendered posts/new.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 452ms (Views: 452.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/posts" for 127.0.0.1 at 2014-12-04 13:09:48 -0200
+Processing by PostsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"lvew6LGAggSbWrGAAKAAqk3gZ/Zgc3MaK8VMhAcZEuw=", "post"=>{"conteudo"=>"uhieahiuhaeiuaheue"}, "outroassunto"=>"aehiuahae", "tipo"=>"fisica", "commit"=>"Salvar"}
+  [1m[36mUsuario Load (2.5ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mAssunto Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "assuntos"  WHERE "assuntos"."assunto" = 'aehiuahae' LIMIT 1[0m
+  [1m[35mSQL (2.5ms)[0m  INSERT INTO "assuntos" ("assunto", "created_at", "tipo", "updated_at") VALUES (?, ?, ?, ?)  [["assunto", "aehiuahae"], ["created_at", "2014-12-04 15:09:48.373636"], ["tipo", 1], ["updated_at", "2014-12-04 15:09:48.373636"]]
+  [1m[36m (10.0ms)[0m  [1mcommit transaction[0m
+  [1m[35mAssunto Load (2.5ms)[0m  SELECT  "assuntos".* FROM "assuntos"  WHERE "assuntos"."assunto" = 'aehiuahae' LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (5.0ms)[0m  INSERT INTO "posts" ("assunto_id", "conteudo", "created_at", "data", "updated_at", "usuario_id") VALUES (?, ?, ?, ?, ?, ?)  [["assunto_id", 1], ["conteudo", "uhieahiuhaeiuaheue"], ["created_at", "2014-12-04 15:09:48.401136"], ["data", "2014-12-04 15:09:48.276134"], ["updated_at", "2014-12-04 15:09:48.401136"], ["usuario_id", 1]]
+  [1m[36m (7.5ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/posts
+Completed 302 Found in 148ms (ActiveRecord: 35.0ms)
+
+
+Started GET "/posts" for 127.0.0.1 at 2014-12-04 13:09:48 -0200
+Processing by PostsController#index as HTML
+  [1m[35mPost Load (2.5ms)[0m  SELECT "posts".* FROM "posts"
+  [1m[36mUsuario Load (2.5ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered posts/index.html.erb within layouts/application (32.5ms)
+Completed 200 OK in 583ms (Views: 575.0ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2014-12-04 13:09:49 -0200
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2014-12-04 13:09:49 -0200
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2014-12-04 13:09:49 -0200
+
+
+Started GET "/assets/comentario.css?body=1" for 127.0.0.1 at 2014-12-04 13:09:49 -0200
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-12-04 13:09:49 -0200
+
+
+Started GET "/assets/geografia.css?body=1" for 127.0.0.1 at 2014-12-04 13:09:49 -0200
+
+
+Started GET "/assets/home2.css?body=1" for 127.0.0.1 at 2014-12-04 13:09:49 -0200
+
+
+Started GET "/assets/login.css?body=1" for 127.0.0.1 at 2014-12-04 13:09:49 -0200
+
+
+Started GET "/assets/usuarios.css?body=1" for 127.0.0.1 at 2014-12-04 13:09:50 -0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-04 13:09:50 -0200
+
+
+Started GET "/assets/twitter/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:50 -0200
+
+
+Started GET "/assets/twitter/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:50 -0200
+
+
+Started GET "/assets/twitter/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:50 -0200
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:50 -0200
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:50 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:50 -0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:50 -0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:50 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:50 -0200
+
+
+Started GET "/assets/twitter/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:50 -0200
+
+
+Started GET "/assets/twitter/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:50 -0200
+
+
+Started GET "/assets/twitter/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:50 -0200
+
+
+Started GET "/assets/twitter/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:50 -0200
+
+
+Started GET "/assets/twitter/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:51 -0200
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:51 -0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:51 -0200
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:51 -0200
+
+
+Started GET "/assets/comentario.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:51 -0200
+
+
+Started GET "/assets/geografia.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:51 -0200
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:51 -0200
+
+
+Started GET "/assets/login.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:51 -0200
+
+
+Started GET "/assets/usuarios.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:51 -0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-04 13:09:51 -0200
+
+
+Started GET "/posts" for 127.0.0.1 at 2014-12-04 13:10:00 -0200
+Processing by PostsController#index as HTML
+  [1m[35mPost Load (0.0ms)[0m  SELECT "posts".* FROM "posts"
+  [1m[36mUsuario Load (0.0ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered posts/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 512ms (Views: 512.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/posts" for 127.0.0.1 at 2014-12-04 13:10:01 -0200
+Processing by PostsController#index as HTML
+  [1m[35mPost Load (2.5ms)[0m  SELECT "posts".* FROM "posts"
+  [1m[36mUsuario Load (0.0ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered posts/index.html.erb within layouts/application (7.5ms)
+Completed 200 OK in 489ms (Views: 486.8ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/posts" for 127.0.0.1 at 2014-12-04 13:10:01 -0200
+Processing by PostsController#index as HTML
+  [1m[35mPost Load (0.0ms)[0m  SELECT "posts".* FROM "posts"
+  [1m[36mUsuario Load (0.0ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered posts/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 564ms (Views: 564.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/posts" for 127.0.0.1 at 2014-12-04 13:10:52 -0200
+Processing by PostsController#index as HTML
+  [1m[35mPost Load (2.5ms)[0m  SELECT "posts".* FROM "posts"
+  [1m[36mUsuario Load (2.5ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered posts/index.html.erb within layouts/application (10.0ms)
+Completed 200 OK in 610ms (Views: 601.0ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2014-12-04 13:10:53 -0200
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2014-12-04 13:10:53 -0200
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2014-12-04 13:10:53 -0200
+
+
+Started GET "/assets/geografia.css?body=1" for 127.0.0.1 at 2014-12-04 13:10:53 -0200
+
+
+Started GET "/assets/comentario.css?body=1" for 127.0.0.1 at 2014-12-04 13:10:53 -0200
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-12-04 13:10:53 -0200
+
+
+Started GET "/assets/home2.css?body=1" for 127.0.0.1 at 2014-12-04 13:10:53 -0200
+
+
+Started GET "/assets/login.css?body=1" for 127.0.0.1 at 2014-12-04 13:10:53 -0200
+
+
+Started GET "/assets/usuarios.css?body=1" for 127.0.0.1 at 2014-12-04 13:10:53 -0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-04 13:10:53 -0200
+
+
+Started GET "/assets/twitter/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-12-04 13:10:53 -0200
+
+
+Started GET "/assets/twitter/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-12-04 13:10:53 -0200
+
+
+Started GET "/assets/twitter/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-12-04 13:10:53 -0200
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-12-04 13:10:54 -0200
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-12-04 13:10:54 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-12-04 13:10:54 -0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-04 13:10:54 -0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-04 13:10:54 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-12-04 13:10:54 -0200
+
+
+Started GET "/assets/twitter/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-12-04 13:10:54 -0200
+
+
+Started GET "/assets/twitter/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-12-04 13:10:54 -0200
+
+
+Started GET "/assets/twitter/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-12-04 13:10:54 -0200
+
+
+Started GET "/assets/twitter/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-12-04 13:10:54 -0200
+
+
+Started GET "/assets/twitter/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-12-04 13:10:54 -0200
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:10:54 -0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-04 13:10:54 -0200
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:10:54 -0200
+
+
+Started GET "/assets/comentario.js?body=1" for 127.0.0.1 at 2014-12-04 13:10:55 -0200
+
+
+Started GET "/assets/geografia.js?body=1" for 127.0.0.1 at 2014-12-04 13:10:55 -0200
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-12-04 13:10:55 -0200
+
+
+Started GET "/assets/login.js?body=1" for 127.0.0.1 at 2014-12-04 13:10:55 -0200
+
+
+Started GET "/assets/usuarios.js?body=1" for 127.0.0.1 at 2014-12-04 13:10:55 -0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-04 13:10:55 -0200
+
+
+Started GET "/assets/favicon.ico" for 127.0.0.1 at 2014-12-04 13:10:55 -0200
+
+
+Started GET "/posts" for 127.0.0.1 at 2014-12-04 13:10:57 -0200
+Processing by PostsController#index as HTML
+  [1m[35mPost Load (2.5ms)[0m  SELECT "posts".* FROM "posts"
+  [1m[36mUsuario Load (2.5ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered posts/index.html.erb within layouts/application (10.0ms)
+Completed 200 OK in 603ms (Views: 597.5ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2014-12-04 13:10:58 -0200
+
+
+Started GET "/assets/geografia.css?body=1" for 127.0.0.1 at 2014-12-04 13:10:58 -0200
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2014-12-04 13:10:58 -0200
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2014-12-04 13:10:58 -0200
+
+
+Started GET "/assets/comentario.css?body=1" for 127.0.0.1 at 2014-12-04 13:10:58 -0200
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-12-04 13:10:58 -0200
+
+
+Started GET "/assets/home2.css?body=1" for 127.0.0.1 at 2014-12-04 13:10:58 -0200
+
+
+Started GET "/assets/login.css?body=1" for 127.0.0.1 at 2014-12-04 13:10:58 -0200
+
+
+Started GET "/assets/usuarios.css?body=1" for 127.0.0.1 at 2014-12-04 13:10:58 -0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-04 13:10:58 -0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-04 13:10:58 -0200
+
+
+Started GET "/assets/twitter/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-12-04 13:10:59 -0200
+
+
+Started GET "/assets/twitter/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-12-04 13:10:59 -0200
+
+
+Started GET "/assets/twitter/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-12-04 13:10:59 -0200
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-12-04 13:10:59 -0200
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-12-04 13:10:59 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-12-04 13:10:59 -0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-04 13:10:59 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-12-04 13:10:59 -0200
+
+
+Started GET "/assets/twitter/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-12-04 13:10:59 -0200
+
+
+Started GET "/assets/twitter/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-12-04 13:10:59 -0200
+
+
+Started GET "/assets/twitter/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-12-04 13:10:59 -0200
+
+
+Started GET "/assets/twitter/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-12-04 13:10:59 -0200
+
+
+Started GET "/assets/twitter/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-12-04 13:10:59 -0200
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:00 -0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:00 -0200
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:00 -0200
+
+
+Started GET "/assets/comentario.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:00 -0200
+
+
+Started GET "/assets/geografia.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:00 -0200
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:00 -0200
+
+
+Started GET "/assets/login.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:00 -0200
+
+
+Started GET "/assets/usuarios.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:00 -0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:00 -0200
+
+
+Started GET "/posts" for 127.0.0.1 at 2014-12-04 13:11:37 -0200
+Processing by PostsController#index as HTML
+  [1m[35mPost Load (0.0ms)[0m  SELECT "posts".* FROM "posts"
+  [1m[36mUsuario Load (0.0ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered posts/index.html.erb within layouts/application (10.0ms)
+Completed 200 OK in 523ms (Views: 522.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2014-12-04 13:11:38 -0200
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2014-12-04 13:11:38 -0200
+
+
+Started GET "/assets/geografia.css?body=1" for 127.0.0.1 at 2014-12-04 13:11:38 -0200
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-12-04 13:11:38 -0200
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2014-12-04 13:11:38 -0200
+
+
+Started GET "/assets/comentario.css?body=1" for 127.0.0.1 at 2014-12-04 13:11:39 -0200
+
+
+Started GET "/assets/home2.css?body=1" for 127.0.0.1 at 2014-12-04 13:11:39 -0200
+
+
+Started GET "/assets/login.css?body=1" for 127.0.0.1 at 2014-12-04 13:11:39 -0200
+
+
+Started GET "/assets/usuarios.css?body=1" for 127.0.0.1 at 2014-12-04 13:11:39 -0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-04 13:11:39 -0200
+
+
+Started GET "/assets/twitter/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:39 -0200
+
+
+Started GET "/assets/twitter/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:39 -0200
+
+
+Started GET "/assets/twitter/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:39 -0200
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:39 -0200
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:39 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:39 -0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:39 -0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:40 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:40 -0200
+
+
+Started GET "/assets/twitter/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:40 -0200
+
+
+Started GET "/assets/twitter/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:40 -0200
+
+
+Started GET "/assets/twitter/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:40 -0200
+
+
+Started GET "/assets/twitter/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:40 -0200
+
+
+Started GET "/assets/twitter/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:40 -0200
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:40 -0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:40 -0200
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:40 -0200
+
+
+Started GET "/assets/comentario.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:40 -0200
+
+
+Started GET "/assets/geografia.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:40 -0200
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:41 -0200
+
+
+Started GET "/assets/login.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:41 -0200
+
+
+Started GET "/assets/usuarios.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:41 -0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:41 -0200
+
+
+Started GET "/assets/favicon.ico" for 127.0.0.1 at 2014-12-04 13:11:41 -0200
+
+
+Started GET "/posts" for 127.0.0.1 at 2014-12-04 13:11:42 -0200
+Processing by PostsController#index as HTML
+  [1m[35mPost Load (2.5ms)[0m  SELECT "posts".* FROM "posts"
+  [1m[36mUsuario Load (0.0ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered posts/index.html.erb within layouts/application (52.5ms)
+Completed 200 OK in 558ms (Views: 552.5ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2014-12-04 13:11:43 -0200
+
+
+Started GET "/assets/comentario.css?body=1" for 127.0.0.1 at 2014-12-04 13:11:43 -0200
+
+
+Started GET "/assets/geografia.css?body=1" for 127.0.0.1 at 2014-12-04 13:11:43 -0200
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2014-12-04 13:11:43 -0200
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2014-12-04 13:11:43 -0200
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-12-04 13:11:43 -0200
+
+
+Started GET "/assets/home2.css?body=1" for 127.0.0.1 at 2014-12-04 13:11:43 -0200
+
+
+Started GET "/assets/login.css?body=1" for 127.0.0.1 at 2014-12-04 13:11:43 -0200
+
+
+Started GET "/assets/usuarios.css?body=1" for 127.0.0.1 at 2014-12-04 13:11:43 -0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-04 13:11:43 -0200
+
+
+Started GET "/assets/twitter/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:44 -0200
+
+
+Started GET "/assets/twitter/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:44 -0200
+
+
+Started GET "/assets/twitter/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:44 -0200
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:44 -0200
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:44 -0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:44 -0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:44 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:44 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:44 -0200
+
+
+Started GET "/assets/twitter/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:44 -0200
+
+
+Started GET "/assets/twitter/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:44 -0200
+
+
+Started GET "/assets/twitter/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:44 -0200
+
+
+Started GET "/assets/twitter/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:45 -0200
+
+
+Started GET "/assets/twitter/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:45 -0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:45 -0200
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:45 -0200
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:45 -0200
+
+
+Started GET "/assets/comentario.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:45 -0200
+
+
+Started GET "/assets/geografia.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:45 -0200
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:45 -0200
+
+
+Started GET "/assets/login.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:45 -0200
+
+
+Started GET "/assets/usuarios.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:45 -0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-04 13:11:45 -0200
+
+
+Started GET "/assets/favicon.ico" for 127.0.0.1 at 2014-12-04 13:11:46 -0200
+
+
+Started GET "/posts" for 127.0.0.1 at 2014-12-04 13:12:03 -0200
+Processing by PostsController#index as HTML
+  [1m[35mPost Load (0.0ms)[0m  SELECT "posts".* FROM "posts"
+  [1m[36mUsuario Load (2.5ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered posts/index.html.erb within layouts/application (10.0ms)
+Completed 200 OK in 523ms (Views: 520.0ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2014-12-04 13:12:04 -0200
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2014-12-04 13:12:04 -0200
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2014-12-04 13:12:04 -0200
+
+
+Started GET "/assets/comentario.css?body=1" for 127.0.0.1 at 2014-12-04 13:12:04 -0200
+
+
+Started GET "/assets/geografia.css?body=1" for 127.0.0.1 at 2014-12-04 13:12:04 -0200
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-12-04 13:12:04 -0200
+
+
+Started GET "/assets/home2.css?body=1" for 127.0.0.1 at 2014-12-04 13:12:04 -0200
+
+
+Started GET "/assets/login.css?body=1" for 127.0.0.1 at 2014-12-04 13:12:04 -0200
+
+
+Started GET "/assets/usuarios.css?body=1" for 127.0.0.1 at 2014-12-04 13:12:04 -0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-04 13:12:04 -0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-04 13:12:05 -0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-04 13:12:05 -0200
+
+
+Started GET "/assets/twitter/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-12-04 13:12:05 -0200
+
+
+Started GET "/assets/twitter/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-12-04 13:12:05 -0200
+
+
+Started GET "/assets/twitter/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-12-04 13:12:05 -0200
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-12-04 13:12:05 -0200
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-12-04 13:12:05 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-12-04 13:12:05 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-12-04 13:12:05 -0200
+
+
+Started GET "/assets/twitter/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-12-04 13:12:05 -0200
+
+
+Started GET "/assets/twitter/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-12-04 13:12:05 -0200
+
+
+Started GET "/assets/twitter/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-12-04 13:12:05 -0200
+
+
+Started GET "/assets/twitter/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-12-04 13:12:06 -0200
+
+
+Started GET "/assets/twitter/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-12-04 13:12:06 -0200
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:12:06 -0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-04 13:12:06 -0200
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:12:06 -0200
+
+
+Started GET "/assets/comentario.js?body=1" for 127.0.0.1 at 2014-12-04 13:12:06 -0200
+
+
+Started GET "/assets/geografia.js?body=1" for 127.0.0.1 at 2014-12-04 13:12:06 -0200
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-12-04 13:12:06 -0200
+
+
+Started GET "/assets/login.js?body=1" for 127.0.0.1 at 2014-12-04 13:12:06 -0200
+
+
+Started GET "/assets/usuarios.js?body=1" for 127.0.0.1 at 2014-12-04 13:12:06 -0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-04 13:12:06 -0200
+
+
+Started GET "/assets/favicon.ico" for 127.0.0.1 at 2014-12-04 13:12:07 -0200
+
+
+Started GET "/posts/comentar?id=1" for 127.0.0.1 at 2014-12-04 13:12:09 -0200
+Processing by PostsController#show_comentar as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mPost Load (2.5ms)[0m  SELECT  "posts".* FROM "posts"  WHERE "posts"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUsuario Load (0.0ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered posts/comentar.erb within layouts/application (2.5ms)
+Completed 200 OK in 533ms (Views: 505.0ms | ActiveRecord: 7.5ms)
+
+
+Started GET "/posts" for 127.0.0.1 at 2014-12-04 13:13:25 -0200
+Processing by PostsController#index as HTML
+  [1m[35mPost Load (2.5ms)[0m  SELECT "posts".* FROM "posts"
+  [1m[36mUsuario Load (0.0ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered posts/index.html.erb within layouts/application (10.0ms)
+Completed 200 OK in 528ms (Views: 522.5ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2014-12-04 13:13:26 -0200
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2014-12-04 13:13:26 -0200
+
+
+Started GET "/assets/geografia.css?body=1" for 127.0.0.1 at 2014-12-04 13:13:26 -0200
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2014-12-04 13:13:26 -0200
+
+
+Started GET "/assets/comentario.css?body=1" for 127.0.0.1 at 2014-12-04 13:13:26 -0200
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-12-04 13:13:26 -0200
+
+
+Started GET "/assets/home2.css?body=1" for 127.0.0.1 at 2014-12-04 13:13:26 -0200
+
+
+Started GET "/assets/login.css?body=1" for 127.0.0.1 at 2014-12-04 13:13:26 -0200
+
+
+Started GET "/assets/usuarios.css?body=1" for 127.0.0.1 at 2014-12-04 13:13:26 -0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-04 13:13:26 -0200
+
+
+Started GET "/posts" for 127.0.0.1 at 2014-12-04 13:13:26 -0200
+Processing by PostsController#index as HTML
+  [1m[35mPost Load (0.0ms)[0m  SELECT "posts".* FROM "posts"
+  [1m[36mUsuario Load (0.0ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered posts/index.html.erb within layouts/application (7.5ms)
+Completed 200 OK in 530ms (Views: 527.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-04 13:13:27 -0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-04 13:13:27 -0200
+
+
+Started GET "/assets/twitter/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-12-04 13:13:27 -0200
+
+
+Started GET "/assets/twitter/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-12-04 13:13:27 -0200
+
+
+Started GET "/assets/twitter/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-12-04 13:13:27 -0200
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-12-04 13:13:27 -0200
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2014-12-04 13:13:28 -0200
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2014-12-04 13:13:28 -0200
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2014-12-04 13:13:28 -0200
+
+
+Started GET "/assets/comentario.css?body=1" for 127.0.0.1 at 2014-12-04 13:13:28 -0200
+
+
+Started GET "/assets/geografia.css?body=1" for 127.0.0.1 at 2014-12-04 13:13:28 -0200
+
+
+Started GET "/assets/home2.css?body=1" for 127.0.0.1 at 2014-12-04 13:13:28 -0200
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-12-04 13:13:28 -0200
+
+
+Started GET "/assets/twitter/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-12-04 13:13:28 -0200
+
+
+Started GET "/assets/usuarios.css?body=1" for 127.0.0.1 at 2014-12-04 13:13:28 -0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-04 13:13:28 -0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-04 13:13:28 -0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-04 13:13:28 -0200
+
+
+Started GET "/assets/login.css?body=1" for 127.0.0.1 at 2014-12-04 13:13:28 -0200
+
+
+Started GET "/assets/twitter/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-12-04 13:13:29 -0200
+
+
+Started GET "/assets/twitter/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-12-04 13:13:29 -0200
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-12-04 13:13:29 -0200
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-12-04 13:13:29 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-12-04 13:13:29 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-12-04 13:13:29 -0200
+
+
+Started GET "/assets/twitter/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-12-04 13:13:29 -0200
+
+
+Started GET "/assets/twitter/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-12-04 13:13:29 -0200
+
+
+Started GET "/assets/twitter/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-12-04 13:13:29 -0200
+
+
+Started GET "/assets/twitter/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-12-04 13:13:29 -0200
+
+
+Started GET "/assets/twitter/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-12-04 13:13:29 -0200
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:13:29 -0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-04 13:13:29 -0200
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:13:30 -0200
+
+
+Started GET "/assets/comentario.js?body=1" for 127.0.0.1 at 2014-12-04 13:13:30 -0200
+
+
+Started GET "/assets/geografia.js?body=1" for 127.0.0.1 at 2014-12-04 13:13:30 -0200
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-12-04 13:13:30 -0200
+
+
+Started GET "/assets/login.js?body=1" for 127.0.0.1 at 2014-12-04 13:13:30 -0200
+
+
+Started GET "/assets/usuarios.js?body=1" for 127.0.0.1 at 2014-12-04 13:13:30 -0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-04 13:13:30 -0200
+
+
+Started GET "/assets/favicon.ico" for 127.0.0.1 at 2014-12-04 13:13:30 -0200
+
+
+Started GET "/posts/comentar?id=1" for 127.0.0.1 at 2014-12-04 13:13:32 -0200
+Processing by PostsController#show_comentar as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mPost Load (2.5ms)[0m  SELECT  "posts".* FROM "posts"  WHERE "posts"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUsuario Load (2.5ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered posts/comentar.erb within layouts/application (0.0ms)
+Completed 200 OK in 520ms (Views: 512.5ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/posts" for 127.0.0.1 at 2014-12-04 13:14:23 -0200
+Processing by PostsController#index as HTML
+  [1m[35mPost Load (2.5ms)[0m  SELECT "posts".* FROM "posts"
+  [1m[36mUsuario Load (0.0ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered posts/index.html.erb within layouts/application (10.0ms)
+Completed 200 OK in 515ms (Views: 510.0ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/posts/comentar?id=1" for 127.0.0.1 at 2014-12-04 13:14:29 -0200
+Processing by PostsController#show_comentar as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mPost Load (2.5ms)[0m  SELECT  "posts".* FROM "posts"  WHERE "posts"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUsuario Load (0.0ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered posts/comentar.erb within layouts/application (0.0ms)
+Completed 200 OK in 514ms (Views: 503.5ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/posts/comentar?id=1" for 127.0.0.1 at 2014-12-04 13:15:17 -0200
+Processing by PostsController#show_comentar as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mPost Load (2.5ms)[0m  SELECT  "posts".* FROM "posts"  WHERE "posts"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUsuario Load (0.0ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered posts/comentar.erb within layouts/application (0.0ms)
+Completed 200 OK in 720ms (Views: 692.5ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2014-12-04 13:17:56 -0200
+Processing by PostsController#new as HTML
+  [1m[35mAssunto Load (0.0ms)[0m  SELECT "assuntos".* FROM "assuntos"
+  Rendered posts/new.html.erb within layouts/application (15.6ms)
+Completed 200 OK in 486ms (Views: 486.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/posts" for 127.0.0.1 at 2014-12-04 13:18:07 -0200
+Processing by PostsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"lvew6LGAggSbWrGAAKAAqk3gZ/Zgc3MaK8VMhAcZEuw=", "post"=>{"conteudo"=>"diuhhieaheiauhiha"}, "assunto_id"=>"1", "outroassunto"=>"aehiuhea", "tipo"=>"humana", "commit"=>"Salvar"}
+  [1m[36mUsuario Load (0.0ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (2.5ms)[0m  begin transaction
+  [1m[36mAssunto Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "assuntos"  WHERE "assuntos"."assunto" = 'aehiuhea' LIMIT 1[0m
+  [1m[35mSQL (2.5ms)[0m  INSERT INTO "assuntos" ("assunto", "created_at", "tipo", "updated_at") VALUES (?, ?, ?, ?)  [["assunto", "aehiuhea"], ["created_at", "2014-12-04 15:18:07.485056"], ["tipo", 2], ["updated_at", "2014-12-04 15:18:07.485056"]]
+  [1m[36m (5.0ms)[0m  [1mcommit transaction[0m
+  [1m[35mAssunto Load (2.5ms)[0m  SELECT  "assuntos".* FROM "assuntos"  WHERE "assuntos"."assunto" = 'aehiuhea' LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (2.5ms)[0m  INSERT INTO "posts" ("assunto_id", "conteudo", "created_at", "data", "updated_at", "usuario_id") VALUES (?, ?, ?, ?, ?, ?)  [["assunto_id", 2], ["conteudo", "diuhhieaheiauhiha"], ["created_at", "2014-12-04 15:18:07.505056"], ["data", "2014-12-04 15:18:07.480056"], ["updated_at", "2014-12-04 15:18:07.505056"], ["usuario_id", 1]]
+  [1m[36m (7.5ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/posts
+Completed 302 Found in 50ms (ActiveRecord: 22.5ms)
+
+
+Started GET "/posts" for 127.0.0.1 at 2014-12-04 13:18:07 -0200
+Processing by PostsController#index as HTML
+  [1m[35mPost Load (2.5ms)[0m  SELECT "posts".* FROM "posts"
+  [1m[36mUsuario Load (2.5ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered posts/index.html.erb within layouts/application (15.0ms)
+Completed 200 OK in 536ms (Views: 528.5ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-04 13:18:08 -0200
+
+
+Started GET "/posts" for 127.0.0.1 at 2014-12-04 13:21:38 -0200
+Processing by PostsController#index as HTML
+  [1m[36mPost Load (0.0ms)[0m  [1mSELECT "posts".* FROM "posts"[0m
+  [1m[35mUsuario Load (2.5ms)[0m  SELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered posts/index.html.erb within layouts/application (52.5ms)
+Completed 200 OK in 605ms (Views: 600.0ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2014-12-04 13:21:39 -0200
+
+
+Started GET "/assets/geografia.css?body=1" for 127.0.0.1 at 2014-12-04 13:21:39 -0200
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2014-12-04 13:21:39 -0200
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2014-12-04 13:21:39 -0200
+
+
+Started GET "/assets/comentario.css?body=1" for 127.0.0.1 at 2014-12-04 13:21:39 -0200
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-12-04 13:21:39 -0200
+
+
+Started GET "/assets/home2.css?body=1" for 127.0.0.1 at 2014-12-04 13:21:39 -0200
+
+
+Started GET "/assets/login.css?body=1" for 127.0.0.1 at 2014-12-04 13:21:39 -0200
+
+
+Started GET "/assets/usuarios.css?body=1" for 127.0.0.1 at 2014-12-04 13:21:39 -0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-04 13:21:39 -0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-04 13:21:39 -0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-04 13:21:39 -0200
+
+
+Started GET "/assets/twitter/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-12-04 13:21:40 -0200
+
+
+Started GET "/assets/twitter/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-12-04 13:21:40 -0200
+
+
+Started GET "/assets/twitter/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-12-04 13:21:40 -0200
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-12-04 13:21:40 -0200
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-12-04 13:21:40 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-12-04 13:21:40 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-12-04 13:21:40 -0200
+
+
+Started GET "/assets/twitter/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-12-04 13:21:40 -0200
+
+
+Started GET "/assets/twitter/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-12-04 13:21:40 -0200
+
+
+Started GET "/assets/twitter/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-12-04 13:21:40 -0200
+
+
+Started GET "/assets/twitter/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-12-04 13:21:40 -0200
+
+
+Started GET "/assets/twitter/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-12-04 13:21:40 -0200
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:21:41 -0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-04 13:21:41 -0200
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:21:41 -0200
+
+
+Started GET "/assets/comentario.js?body=1" for 127.0.0.1 at 2014-12-04 13:21:41 -0200
+
+
+Started GET "/assets/geografia.js?body=1" for 127.0.0.1 at 2014-12-04 13:21:41 -0200
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-12-04 13:21:41 -0200
+
+
+Started GET "/assets/login.js?body=1" for 127.0.0.1 at 2014-12-04 13:21:41 -0200
+
+
+Started GET "/assets/usuarios.js?body=1" for 127.0.0.1 at 2014-12-04 13:21:41 -0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-04 13:21:41 -0200
+
+
+Started GET "/assets/favicon.ico" for 127.0.0.1 at 2014-12-04 13:21:42 -0200
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2014-12-04 13:21:44 -0200
+Processing by PostsController#new as HTML
+  Rendered posts/new.html.erb within layouts/application (15.6ms)
+Completed 500 Internal Server Error in 52ms
+
+SyntaxError (C:/Sites/forum-geografia/forum-geografia/app/views/posts/new.html.erb:69: syntax error, unexpected keyword_ensure, expecting $end):
+  app/views/posts/new.html.erb:69: syntax error, unexpected keyword_ensure, expecting $end
+
+
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (15.6ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (312.0ms)
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2014-12-04 13:21:45 -0200
+Processing by PostsController#new as HTML
+  Rendered posts/new.html.erb within layouts/application (17.5ms)
+Completed 500 Internal Server Error in 58ms
+
+SyntaxError (C:/Sites/forum-geografia/forum-geografia/app/views/posts/new.html.erb:69: syntax error, unexpected keyword_ensure, expecting $end):
+  app/views/posts/new.html.erb:69: syntax error, unexpected keyword_ensure, expecting $end
+
+
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.5ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.5ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (312.5ms)
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2014-12-04 13:22:35 -0200
+Processing by PostsController#new as HTML
+  Rendered posts/new.html.erb within layouts/application (10.0ms)
+Completed 500 Internal Server Error in 53ms
+
+SyntaxError (C:/Sites/forum-geografia/forum-geografia/app/views/posts/new.html.erb:45: syntax error, unexpected keyword_ensure, expecting $end):
+  app/views/posts/new.html.erb:45: syntax error, unexpected keyword_ensure, expecting $end
+
+
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.5ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.5ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (315.0ms)
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2014-12-04 13:22:36 -0200
+Processing by PostsController#new as HTML
+  Rendered posts/new.html.erb within layouts/application (10.0ms)
+Completed 500 Internal Server Error in 53ms
+
+SyntaxError (C:/Sites/forum-geografia/forum-geografia/app/views/posts/new.html.erb:45: syntax error, unexpected keyword_ensure, expecting $end):
+  app/views/posts/new.html.erb:45: syntax error, unexpected keyword_ensure, expecting $end
+
+
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.5ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.5ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (317.5ms)
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2014-12-04 13:23:19 -0200
+Processing by PostsController#new as HTML
+  [1m[35mAssunto Load (2.5ms)[0m  SELECT "assuntos".* FROM "assuntos"
+  Rendered posts/new.html.erb within layouts/application (12.5ms)
+Completed 200 OK in 585ms (Views: 582.5ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2014-12-04 13:23:20 -0200
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2014-12-04 13:23:20 -0200
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2014-12-04 13:23:20 -0200
+
+
+Started GET "/assets/comentario.css?body=1" for 127.0.0.1 at 2014-12-04 13:23:20 -0200
+
+
+Started GET "/assets/geografia.css?body=1" for 127.0.0.1 at 2014-12-04 13:23:20 -0200
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-12-04 13:23:20 -0200
+
+
+Started GET "/assets/home2.css?body=1" for 127.0.0.1 at 2014-12-04 13:23:20 -0200
+
+
+Started GET "/assets/login.css?body=1" for 127.0.0.1 at 2014-12-04 13:23:20 -0200
+
+
+Started GET "/assets/usuarios.css?body=1" for 127.0.0.1 at 2014-12-04 13:23:21 -0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-04 13:23:21 -0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:21 -0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:21 -0200
+
+
+Started GET "/assets/twitter/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:21 -0200
+
+
+Started GET "/assets/twitter/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:21 -0200
+
+
+Started GET "/assets/twitter/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:21 -0200
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:21 -0200
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:21 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:21 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:21 -0200
+
+
+Started GET "/assets/twitter/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:21 -0200
+
+
+Started GET "/assets/twitter/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:21 -0200
+
+
+Started GET "/assets/twitter/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:22 -0200
+
+
+Started GET "/assets/twitter/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:22 -0200
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:22 -0200
+
+
+Started GET "/assets/twitter/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:22 -0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:22 -0200
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:22 -0200
+
+
+Started GET "/assets/comentario.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:22 -0200
+
+
+Started GET "/assets/geografia.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:22 -0200
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:22 -0200
+
+
+Started GET "/assets/login.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:22 -0200
+
+
+Started GET "/assets/usuarios.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:22 -0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:22 -0200
+
+
+Started GET "/assets/favicon.ico" for 127.0.0.1 at 2014-12-04 13:23:23 -0200
+
+
+Started POST "/posts" for 127.0.0.1 at 2014-12-04 13:23:32 -0200
+Processing by PostsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"lvew6LGAggSbWrGAAKAAqk3gZ/Zgc3MaK8VMhAcZEuw=", "post"=>{"conteudo"=>"aiehauhiuhiuheaiuheaihu"}, "assunto_id"=>"1", "outroassunto"=>"iuaheuheaiuahe", "tipo"=>"humana", "commit"=>"Salvar"}
+  [1m[36mUsuario Load (2.5ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mAssunto Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "assuntos"  WHERE "assuntos"."assunto" = 'iuaheuheaiuahe' LIMIT 1[0m
+  [1m[35mSQL (2.5ms)[0m  INSERT INTO "assuntos" ("assunto", "created_at", "tipo", "updated_at") VALUES (?, ?, ?, ?)  [["assunto", "iuaheuheaiuahe"], ["created_at", "2014-12-04 15:23:32.414535"], ["tipo", 2], ["updated_at", "2014-12-04 15:23:32.414535"]]
+  [1m[36m (7.5ms)[0m  [1mcommit transaction[0m
+  [1m[35mAssunto Load (0.0ms)[0m  SELECT  "assuntos".* FROM "assuntos"  WHERE "assuntos"."assunto" = 'iuaheuheaiuahe' LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (5.0ms)[0m  INSERT INTO "posts" ("assunto_id", "conteudo", "created_at", "data", "updated_at", "usuario_id") VALUES (?, ?, ?, ?, ?, ?)  [["assunto_id", 3], ["conteudo", "aiehauhiuhiuheaiuheaihu"], ["created_at", "2014-12-04 15:23:32.434536"], ["data", "2014-12-04 15:23:32.407035"], ["updated_at", "2014-12-04 15:23:32.434536"], ["usuario_id", 1]]
+  [1m[36m (7.5ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/posts
+Completed 302 Found in 48ms (ActiveRecord: 25.0ms)
+
+
+Started GET "/posts" for 127.0.0.1 at 2014-12-04 13:23:32 -0200
+Processing by PostsController#index as HTML
+  [1m[35mPost Load (2.5ms)[0m  SELECT "posts".* FROM "posts"
+  [1m[36mUsuario Load (2.5ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered posts/index.html.erb within layouts/application (13.5ms)
+Completed 200 OK in 524ms (Views: 518.5ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2014-12-04 13:23:33 -0200
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2014-12-04 13:23:33 -0200
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2014-12-04 13:23:33 -0200
+
+
+Started GET "/assets/comentario.css?body=1" for 127.0.0.1 at 2014-12-04 13:23:33 -0200
+
+
+Started GET "/assets/geografia.css?body=1" for 127.0.0.1 at 2014-12-04 13:23:33 -0200
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-12-04 13:23:33 -0200
+
+
+Started GET "/assets/home2.css?body=1" for 127.0.0.1 at 2014-12-04 13:23:33 -0200
+
+
+Started GET "/assets/login.css?body=1" for 127.0.0.1 at 2014-12-04 13:23:34 -0200
+
+
+Started GET "/assets/usuarios.css?body=1" for 127.0.0.1 at 2014-12-04 13:23:34 -0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-04 13:23:34 -0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:34 -0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:34 -0200
+
+
+Started GET "/assets/twitter/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:34 -0200
+
+
+Started GET "/assets/twitter/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:34 -0200
+
+
+Started GET "/assets/twitter/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:34 -0200
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:34 -0200
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:34 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:34 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:34 -0200
+
+
+Started GET "/assets/twitter/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:35 -0200
+
+
+Started GET "/assets/twitter/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:35 -0200
+
+
+Started GET "/assets/twitter/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:35 -0200
+
+
+Started GET "/assets/twitter/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:35 -0200
+
+
+Started GET "/assets/twitter/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:35 -0200
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:35 -0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:35 -0200
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:35 -0200
+
+
+Started GET "/assets/comentario.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:35 -0200
+
+
+Started GET "/assets/geografia.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:35 -0200
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:35 -0200
+
+
+Started GET "/assets/login.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:35 -0200
+
+
+Started GET "/assets/usuarios.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:36 -0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-04 13:23:36 -0200
+
+
+Started GET "/posts" for 127.0.0.1 at 2014-12-04 13:23:59 -0200
+Processing by PostsController#index as HTML
+  [1m[35mPost Load (2.5ms)[0m  SELECT "posts".* FROM "posts"
+  [1m[36mUsuario Load (0.0ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered posts/index.html.erb within layouts/application (12.5ms)
+Completed 200 OK in 513ms (Views: 507.5ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/assets/comentario.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:00 -0200
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:00 -0200
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:00 -0200
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:00 -0200
+
+
+Started GET "/assets/geografia.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:00 -0200
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:00 -0200
+
+
+Started GET "/assets/home2.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:00 -0200
+
+
+Started GET "/assets/login.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:00 -0200
+
+
+Started GET "/assets/usuarios.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:00 -0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:01 -0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:01 -0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:01 -0200
+
+
+Started GET "/assets/twitter/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:01 -0200
+
+
+Started GET "/assets/twitter/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:01 -0200
+
+
+Started GET "/assets/twitter/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:01 -0200
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:01 -0200
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:01 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:01 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:01 -0200
+
+
+Started GET "/assets/twitter/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:01 -0200
+
+
+Started GET "/assets/twitter/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:01 -0200
+
+
+Started GET "/assets/twitter/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:01 -0200
+
+
+Started GET "/assets/twitter/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:02 -0200
+
+
+Started GET "/assets/twitter/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:02 -0200
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:02 -0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:02 -0200
+
+
+Started GET "/assets/comentario.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:02 -0200
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:02 -0200
+
+
+Started GET "/assets/geografia.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:02 -0200
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:02 -0200
+
+
+Started GET "/assets/login.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:02 -0200
+
+
+Started GET "/assets/usuarios.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:02 -0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:02 -0200
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2014-12-04 13:24:04 -0200
+Processing by PostsController#new as HTML
+  [1m[35mAssunto Load (0.0ms)[0m  SELECT "assuntos".* FROM "assuntos"
+  Rendered posts/new.html.erb within layouts/application (15.6ms)
+Completed 200 OK in 484ms (Views: 483.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2014-12-04 13:24:15 -0200
+Processing by PostsController#new as HTML
+  [1m[36mAssunto Load (0.0ms)[0m  [1mSELECT "assuntos".* FROM "assuntos"[0m
+  Rendered posts/new.html.erb within layouts/application (12.5ms)
+Completed 200 OK in 518ms (Views: 512.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:15 -0200
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:15 -0200
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:16 -0200
+
+
+Started GET "/assets/comentario.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:16 -0200
+
+
+Started GET "/assets/geografia.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:16 -0200
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:16 -0200
+
+
+Started GET "/assets/home2.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:16 -0200
+
+
+Started GET "/assets/login.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:16 -0200
+
+
+Started GET "/assets/usuarios.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:16 -0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:16 -0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:16 -0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:16 -0200
+
+
+Started GET "/assets/twitter/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:16 -0200
+
+
+Started GET "/assets/twitter/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:16 -0200
+
+
+Started GET "/assets/twitter/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:16 -0200
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:17 -0200
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:17 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:17 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:17 -0200
+
+
+Started GET "/assets/twitter/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:17 -0200
+
+
+Started GET "/assets/twitter/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:17 -0200
+
+
+Started GET "/assets/twitter/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:17 -0200
+
+
+Started GET "/assets/twitter/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:17 -0200
+
+
+Started GET "/assets/twitter/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:17 -0200
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:17 -0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:17 -0200
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:17 -0200
+
+
+Started GET "/assets/comentario.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:18 -0200
+
+
+Started GET "/assets/geografia.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:18 -0200
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:18 -0200
+
+
+Started GET "/assets/login.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:18 -0200
+
+
+Started GET "/assets/usuarios.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:18 -0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:18 -0200
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2014-12-04 13:24:25 -0200
+Processing by PostsController#new as HTML
+  [1m[35mAssunto Load (0.0ms)[0m  SELECT "assuntos".* FROM "assuntos"
+  Rendered posts/new.html.erb within layouts/application (7.5ms)
+Completed 200 OK in 578ms (Views: 575.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:26 -0200
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:26 -0200
+
+
+Started GET "/assets/geografia.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:26 -0200
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:26 -0200
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:26 -0200
+
+
+Started GET "/assets/comentario.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:26 -0200
+
+
+Started GET "/assets/home2.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:26 -0200
+
+
+Started GET "/assets/login.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:26 -0200
+
+
+Started GET "/assets/usuarios.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:27 -0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:27 -0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:27 -0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:27 -0200
+
+
+Started GET "/assets/twitter/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:27 -0200
+
+
+Started GET "/assets/twitter/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:27 -0200
+
+
+Started GET "/assets/twitter/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:27 -0200
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:27 -0200
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:27 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:27 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:27 -0200
+
+
+Started GET "/assets/twitter/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:27 -0200
+
+
+Started GET "/assets/twitter/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:28 -0200
+
+
+Started GET "/assets/twitter/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:28 -0200
+
+
+Started GET "/assets/twitter/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:28 -0200
+
+
+Started GET "/assets/twitter/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:28 -0200
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:28 -0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:28 -0200
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:28 -0200
+
+
+Started GET "/assets/comentario.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:28 -0200
+
+
+Started GET "/assets/geografia.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:28 -0200
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:28 -0200
+
+
+Started GET "/assets/login.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:28 -0200
+
+
+Started GET "/assets/usuarios.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:28 -0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:28 -0200
+
+
+Started GET "/assets/favicon.ico" for 127.0.0.1 at 2014-12-04 13:24:29 -0200
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2014-12-04 13:24:35 -0200
+Processing by PostsController#new as HTML
+  [1m[36mAssunto Load (0.0ms)[0m  [1mSELECT "assuntos".* FROM "assuntos"[0m
+  Rendered posts/new.html.erb within layouts/application (12.5ms)
+Completed 200 OK in 516ms (Views: 516.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:36 -0200
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:36 -0200
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:36 -0200
+
+
+Started GET "/assets/geografia.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:36 -0200
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:36 -0200
+
+
+Started GET "/assets/comentario.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:36 -0200
+
+
+Started GET "/assets/home2.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:36 -0200
+
+
+Started GET "/assets/login.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:36 -0200
+
+
+Started GET "/assets/usuarios.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:37 -0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-04 13:24:37 -0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:37 -0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:37 -0200
+
+
+Started GET "/assets/twitter/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:37 -0200
+
+
+Started GET "/assets/twitter/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:37 -0200
+
+
+Started GET "/assets/twitter/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:37 -0200
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:37 -0200
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:37 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:37 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:37 -0200
+
+
+Started GET "/assets/twitter/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:37 -0200
+
+
+Started GET "/assets/twitter/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:37 -0200
+
+
+Started GET "/assets/twitter/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:38 -0200
+
+
+Started GET "/assets/twitter/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:38 -0200
+
+
+Started GET "/assets/twitter/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:38 -0200
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:38 -0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:38 -0200
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:38 -0200
+
+
+Started GET "/assets/comentario.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:38 -0200
+
+
+Started GET "/assets/geografia.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:38 -0200
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:38 -0200
+
+
+Started GET "/assets/login.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:38 -0200
+
+
+Started GET "/assets/usuarios.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:38 -0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-04 13:24:38 -0200
+
+
+Started GET "/assets/favicon.ico" for 127.0.0.1 at 2014-12-04 13:24:39 -0200
+
+
+Started POST "/posts" for 127.0.0.1 at 2014-12-04 13:25:07 -0200
+Processing by PostsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"lvew6LGAggSbWrGAAKAAqk3gZ/Zgc3MaK8VMhAcZEuw=", "post"=>{"conteudo"=>"uhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuaeuhaehaeiuh aeaiu hei aheia heiauehiau eha ieau hei auhei auh eiha ie ahiu ehaiu ehaiu ehiau ehi "}, "assunto_id"=>"1", "outroassunto"=>"iuhauiheu", "tipo"=>"humana", "commit"=>"Salvar"}
+  [1m[35mUsuario Load (0.0ms)[0m  SELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mAssunto Exists (2.5ms)[0m  SELECT  1 AS one FROM "assuntos"  WHERE "assuntos"."assunto" = 'iuhauiheu' LIMIT 1
+  [1m[36mSQL (2.5ms)[0m  [1mINSERT INTO "assuntos" ("assunto", "created_at", "tipo", "updated_at") VALUES (?, ?, ?, ?)[0m  [["assunto", "iuhauiheu"], ["created_at", "2014-12-04 15:25:07.725344"], ["tipo", 2], ["updated_at", "2014-12-04 15:25:07.725344"]]
+  [1m[35m (7.5ms)[0m  commit transaction
+  [1m[36mAssunto Load (0.0ms)[0m  [1mSELECT  "assuntos".* FROM "assuntos"  WHERE "assuntos"."assunto" = 'iuhauiheu' LIMIT 1[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mSQL (2.5ms)[0m  [1mINSERT INTO "posts" ("assunto_id", "conteudo", "created_at", "data", "updated_at", "usuario_id") VALUES (?, ?, ?, ?, ?, ?)[0m  [["assunto_id", 4], ["conteudo", "uhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuuhirhiushiuhrsihur i uisr hiuaeuhaehaeiuh aeaiu hei aheia heiauehiau eha ieau hei auhei auh eiha ie ahiu ehaiu ehaiu ehiau ehi "], ["created_at", "2014-12-04 15:25:07.742845"], ["data", "2014-12-04 15:25:07.717844"], ["updated_at", "2014-12-04 15:25:07.742845"], ["usuario_id", 1]]
+  [1m[35m (10.0ms)[0m  commit transaction
+Redirected to http://localhost:3000/posts
+Completed 302 Found in 53ms (ActiveRecord: 25.0ms)
+
+
+Started GET "/posts" for 127.0.0.1 at 2014-12-04 13:25:07 -0200
+Processing by PostsController#index as HTML
+  [1m[36mPost Load (2.5ms)[0m  [1mSELECT "posts".* FROM "posts"[0m
+  [1m[35mUsuario Load (2.5ms)[0m  SELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered posts/index.html.erb within layouts/application (15.0ms)
+Completed 200 OK in 543ms (Views: 535.0ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/posts/comentar?id=4" for 127.0.0.1 at 2014-12-04 13:26:09 -0200
+Processing by PostsController#show_comentar as HTML
+  Parameters: {"id"=>"4"}
+  [1m[35mPost Load (2.5ms)[0m  SELECT  "posts".* FROM "posts"  WHERE "posts"."id" = ? LIMIT 1  [["id", 4]]
+  [1m[36mUsuario Load (2.5ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered posts/comentar.erb within layouts/application (0.0ms)
+Completed 200 OK in 664ms (Views: 506.5ms | ActiveRecord: 12.5ms)
+
+
+Started GET "/posts/comentar?id=4" for 127.0.0.1 at 2014-12-04 13:27:34 -0200
+Processing by PostsController#show_comentar as HTML
+  Parameters: {"id"=>"4"}
+  [1m[35mPost Load (2.5ms)[0m  SELECT  "posts".* FROM "posts"  WHERE "posts"."id" = ? LIMIT 1  [["id", 4]]
+  [1m[36mUsuario Load (0.0ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered posts/comentar.erb within layouts/application (0.0ms)
+Completed 200 OK in 584ms (Views: 571.0ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2014-12-04 13:27:35 -0200
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2014-12-04 13:27:35 -0200
+
+
+Started GET "/assets/geografia.css?body=1" for 127.0.0.1 at 2014-12-04 13:27:35 -0200
+
+
+Started GET "/assets/comentario.css?body=1" for 127.0.0.1 at 2014-12-04 13:27:35 -0200
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2014-12-04 13:27:35 -0200
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-12-04 13:27:35 -0200
+
+
+Started GET "/assets/home2.css?body=1" for 127.0.0.1 at 2014-12-04 13:27:35 -0200
+
+
+Started GET "/assets/login.css?body=1" for 127.0.0.1 at 2014-12-04 13:27:35 -0200
+
+
+Started GET "/assets/usuarios.css?body=1" for 127.0.0.1 at 2014-12-04 13:27:35 -0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-04 13:27:35 -0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:35 -0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:36 -0200
+
+
+Started GET "/assets/twitter/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:36 -0200
+
+
+Started GET "/assets/twitter/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:36 -0200
+
+
+Started GET "/assets/twitter/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:36 -0200
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:36 -0200
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:36 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:36 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:36 -0200
+
+
+Started GET "/assets/twitter/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:36 -0200
+
+
+Started GET "/assets/twitter/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:36 -0200
+
+
+Started GET "/assets/twitter/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:36 -0200
+
+
+Started GET "/assets/twitter/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:36 -0200
+
+
+Started GET "/assets/twitter/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:36 -0200
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:37 -0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:37 -0200
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:37 -0200
+
+
+Started GET "/assets/comentario.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:37 -0200
+
+
+Started GET "/assets/geografia.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:37 -0200
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:37 -0200
+
+
+Started GET "/assets/login.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:37 -0200
+
+
+Started GET "/assets/usuarios.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:37 -0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:37 -0200
+
+
+Started GET "/assets/favicon.ico" for 127.0.0.1 at 2014-12-04 13:27:38 -0200
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2014-12-04 13:27:38 -0200
+Processing by PostsController#new as HTML
+  [1m[35mAssunto Load (0.0ms)[0m  SELECT "assuntos".* FROM "assuntos"
+  Rendered posts/new.html.erb within layouts/application (27.5ms)
+Completed 200 OK in 523ms (Views: 497.5ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2014-12-04 13:27:39 -0200
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2014-12-04 13:27:39 -0200
+
+
+Started GET "/assets/geografia.css?body=1" for 127.0.0.1 at 2014-12-04 13:27:39 -0200
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-12-04 13:27:39 -0200
+
+
+Started GET "/assets/comentario.css?body=1" for 127.0.0.1 at 2014-12-04 13:27:39 -0200
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2014-12-04 13:27:39 -0200
+
+
+Started GET "/assets/home2.css?body=1" for 127.0.0.1 at 2014-12-04 13:27:39 -0200
+
+
+Started GET "/assets/login.css?body=1" for 127.0.0.1 at 2014-12-04 13:27:39 -0200
+
+
+Started GET "/assets/usuarios.css?body=1" for 127.0.0.1 at 2014-12-04 13:27:39 -0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-04 13:27:40 -0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:40 -0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:40 -0200
+
+
+Started GET "/assets/twitter/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:40 -0200
+
+
+Started GET "/assets/twitter/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:40 -0200
+
+
+Started GET "/assets/twitter/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:40 -0200
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:40 -0200
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:40 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:40 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:40 -0200
+
+
+Started GET "/assets/twitter/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:40 -0200
+
+
+Started GET "/assets/twitter/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:40 -0200
+
+
+Started GET "/assets/twitter/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:40 -0200
+
+
+Started GET "/assets/twitter/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:41 -0200
+
+
+Started GET "/assets/twitter/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:41 -0200
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:41 -0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:41 -0200
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:41 -0200
+
+
+Started GET "/assets/comentario.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:41 -0200
+
+
+Started GET "/assets/geografia.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:41 -0200
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:41 -0200
+
+
+Started GET "/assets/login.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:41 -0200
+
+
+Started GET "/assets/usuarios.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:41 -0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-04 13:27:41 -0200
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2014-12-04 13:27:59 -0200
+Processing by PostsController#new as HTML
+  [1m[36mAssunto Load (0.0ms)[0m  [1mSELECT "assuntos".* FROM "assuntos"[0m
+  Rendered posts/new.html.erb within layouts/application (12.5ms)
+Completed 200 OK in 525ms (Views: 525.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2014-12-04 13:27:59 -0200
+
+
+Started GET "/assets/geografia.css?body=1" for 127.0.0.1 at 2014-12-04 13:28:00 -0200
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2014-12-04 13:28:00 -0200
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-12-04 13:28:00 -0200
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2014-12-04 13:28:00 -0200
+
+
+Started GET "/assets/comentario.css?body=1" for 127.0.0.1 at 2014-12-04 13:28:00 -0200
+
+
+Started GET "/assets/home2.css?body=1" for 127.0.0.1 at 2014-12-04 13:28:00 -0200
+
+
+Started GET "/assets/login.css?body=1" for 127.0.0.1 at 2014-12-04 13:28:00 -0200
+
+
+Started GET "/assets/usuarios.css?body=1" for 127.0.0.1 at 2014-12-04 13:28:00 -0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-04 13:28:00 -0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:00 -0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:00 -0200
+
+
+Started GET "/assets/twitter/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:00 -0200
+
+
+Started GET "/assets/twitter/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:00 -0200
+
+
+Started GET "/assets/twitter/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:01 -0200
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:01 -0200
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:01 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:01 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:01 -0200
+
+
+Started GET "/assets/twitter/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:01 -0200
+
+
+Started GET "/assets/twitter/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:01 -0200
+
+
+Started GET "/assets/twitter/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:01 -0200
+
+
+Started GET "/assets/twitter/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:01 -0200
+
+
+Started GET "/assets/twitter/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:01 -0200
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:01 -0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:01 -0200
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:01 -0200
+
+
+Started GET "/assets/comentario.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:01 -0200
+
+
+Started GET "/assets/geografia.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:01 -0200
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:02 -0200
+
+
+Started GET "/assets/login.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:02 -0200
+
+
+Started GET "/assets/usuarios.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:02 -0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:02 -0200
+
+
+Started GET "/assets/favicon.ico" for 127.0.0.1 at 2014-12-04 13:28:02 -0200
+
+
+Started GET "/posts/new" for 127.0.0.1 at 2014-12-04 13:28:21 -0200
+Processing by PostsController#new as HTML
+  [1m[35mAssunto Load (0.0ms)[0m  SELECT "assuntos".* FROM "assuntos"
+  Rendered posts/new.html.erb within layouts/application (12.5ms)
+Completed 200 OK in 1541ms (Views: 1536.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2014-12-04 13:28:23 -0200
+
+
+Started GET "/assets/comentario.css?body=1" for 127.0.0.1 at 2014-12-04 13:28:23 -0200
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2014-12-04 13:28:24 -0200
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-12-04 13:28:24 -0200
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2014-12-04 13:28:24 -0200
+
+
+Started GET "/assets/geografia.css?body=1" for 127.0.0.1 at 2014-12-04 13:28:24 -0200
+
+
+Started GET "/assets/login.css?body=1" for 127.0.0.1 at 2014-12-04 13:28:24 -0200
+
+
+Started GET "/assets/home2.css?body=1" for 127.0.0.1 at 2014-12-04 13:28:24 -0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-04 13:28:24 -0200
+
+
+Started GET "/assets/usuarios.css?body=1" for 127.0.0.1 at 2014-12-04 13:28:25 -0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:25 -0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:25 -0200
+
+
+Started GET "/assets/twitter/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:25 -0200
+
+
+Started GET "/assets/twitter/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:25 -0200
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:25 -0200
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:26 -0200
+
+
+Started GET "/assets/twitter/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:26 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:26 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:26 -0200
+
+
+Started GET "/assets/twitter/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:26 -0200
+
+
+Started GET "/assets/twitter/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:26 -0200
+
+
+Started GET "/assets/twitter/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:26 -0200
+
+
+Started GET "/assets/twitter/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:26 -0200
+
+
+Started GET "/assets/twitter/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:27 -0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:27 -0200
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:27 -0200
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:27 -0200
+
+
+Started GET "/assets/comentario.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:27 -0200
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:27 -0200
+
+
+Started GET "/assets/geografia.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:27 -0200
+
+
+Started GET "/assets/usuarios.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:27 -0200
+
+
+Started GET "/assets/login.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:27 -0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:27 -0200
+
+
+Started GET "/assets/favicon.ico" for 127.0.0.1 at 2014-12-04 13:28:28 -0200
+
+
+Started POST "/posts" for 127.0.0.1 at 2014-12-04 13:28:41 -0200
+Processing by PostsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"lvew6LGAggSbWrGAAKAAqk3gZ/Zgc3MaK8VMhAcZEuw=", "post"=>{"conteudo"=>"eauheiuahihuaeihua"}, "assunto_id"=>"1", "outroassunto"=>"oaoaoaoaoaoa", "tipo"=>"humana", "commit"=>"Salvar"}
+  [1m[36mUsuario Load (2.5ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36mAssunto Exists (0.0ms)[0m  [1mSELECT  1 AS one FROM "assuntos"  WHERE "assuntos"."assunto" = 'oaoaoaoaoaoa' LIMIT 1[0m
+  [1m[35mSQL (2.5ms)[0m  INSERT INTO "assuntos" ("assunto", "created_at", "tipo", "updated_at") VALUES (?, ?, ?, ?)  [["assunto", "oaoaoaoaoaoa"], ["created_at", "2014-12-04 15:28:41.619161"], ["tipo", 2], ["updated_at", "2014-12-04 15:28:41.619161"]]
+  [1m[36m (7.5ms)[0m  [1mcommit transaction[0m
+  [1m[35mAssunto Load (2.5ms)[0m  SELECT  "assuntos".* FROM "assuntos"  WHERE "assuntos"."assunto" = 'oaoaoaoaoaoa' LIMIT 1
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (5.0ms)[0m  INSERT INTO "posts" ("assunto_id", "conteudo", "created_at", "data", "updated_at", "usuario_id") VALUES (?, ?, ?, ?, ?, ?)  [["assunto_id", 5], ["conteudo", "eauheiuahihuaeihua"], ["created_at", "2014-12-04 15:28:41.644162"], ["data", "2014-12-04 15:28:41.551660"], ["updated_at", "2014-12-04 15:28:41.644162"], ["usuario_id", 1]]
+  [1m[36m (7.5ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/posts
+Completed 302 Found in 123ms (ActiveRecord: 27.5ms)
+
+
+Started GET "/posts" for 127.0.0.1 at 2014-12-04 13:28:41 -0200
+Processing by PostsController#index as HTML
+  [1m[35mPost Load (2.5ms)[0m  SELECT "posts".* FROM "posts"
+  [1m[36mUsuario Load (2.5ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCACHE (2.5ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered posts/index.html.erb within layouts/application (22.5ms)
+Completed 200 OK in 705ms (Views: 694.5ms | ActiveRecord: 7.5ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2014-12-04 13:28:42 -0200
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2014-12-04 13:28:42 -0200
+
+
+Started GET "/assets/geografia.css?body=1" for 127.0.0.1 at 2014-12-04 13:28:43 -0200
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2014-12-04 13:28:43 -0200
+
+
+Started GET "/assets/comentario.css?body=1" for 127.0.0.1 at 2014-12-04 13:28:43 -0200
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-12-04 13:28:43 -0200
+
+
+Started GET "/assets/home2.css?body=1" for 127.0.0.1 at 2014-12-04 13:28:43 -0200
+
+
+Started GET "/assets/login.css?body=1" for 127.0.0.1 at 2014-12-04 13:28:43 -0200
+
+
+Started GET "/assets/usuarios.css?body=1" for 127.0.0.1 at 2014-12-04 13:28:43 -0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-04 13:28:43 -0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:44 -0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:44 -0200
+
+
+Started GET "/assets/twitter/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:44 -0200
+
+
+Started GET "/assets/twitter/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:44 -0200
+
+
+Started GET "/assets/twitter/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:44 -0200
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:44 -0200
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:44 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:44 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:44 -0200
+
+
+Started GET "/assets/twitter/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:44 -0200
+
+
+Started GET "/assets/twitter/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:44 -0200
+
+
+Started GET "/assets/twitter/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:44 -0200
+
+
+Started GET "/assets/twitter/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:45 -0200
+
+
+Started GET "/assets/twitter/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:45 -0200
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:45 -0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:45 -0200
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:45 -0200
+
+
+Started GET "/assets/comentario.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:45 -0200
+
+
+Started GET "/assets/geografia.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:45 -0200
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:45 -0200
+
+
+Started GET "/assets/login.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:45 -0200
+
+
+Started GET "/assets/usuarios.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:45 -0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-04 13:28:45 -0200
+
+
+Started GET "/usuarios" for 127.0.0.1 at 2014-12-04 13:32:36 -0200
+  [1m[36mActiveRecord::SchemaMigration Load (0.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by UsuariosController#index as HTML
+  [1m[35mUsuario Load (0.0ms)[0m  SELECT "usuarios".* FROM "usuarios"
+  Rendered usuarios/index.html.erb within layouts/application (62.5ms)
+Completed 200 OK in 1870ms (Views: 1657.5ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2014-12-04 13:32:41 -0200
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-12-04 13:32:41 -0200
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2014-12-04 13:32:41 -0200
+
+
+Started GET "/assets/comentario.css?body=1" for 127.0.0.1 at 2014-12-04 13:32:41 -0200
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2014-12-04 13:32:41 -0200
+
+
+Started GET "/assets/geografia.css?body=1" for 127.0.0.1 at 2014-12-04 13:32:41 -0200
+
+
+Started GET "/assets/home2.css?body=1" for 127.0.0.1 at 2014-12-04 13:32:41 -0200
+
+
+Started GET "/assets/login.css?body=1" for 127.0.0.1 at 2014-12-04 13:32:41 -0200
+
+
+Started GET "/assets/usuarios.css?body=1" for 127.0.0.1 at 2014-12-04 13:32:41 -0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-04 13:32:41 -0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-04 13:32:42 -0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-04 13:32:42 -0200
+
+
+Started GET "/assets/twitter/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-12-04 13:32:42 -0200
+
+
+Started GET "/assets/twitter/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-12-04 13:32:42 -0200
+
+
+Started GET "/assets/twitter/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-12-04 13:32:42 -0200
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-12-04 13:32:42 -0200
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-12-04 13:32:42 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-12-04 13:32:42 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-12-04 13:32:42 -0200
+
+
+Started GET "/assets/twitter/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-12-04 13:32:43 -0200
+
+
+Started GET "/assets/twitter/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-12-04 13:32:43 -0200
+
+
+Started GET "/assets/twitter/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-12-04 13:32:43 -0200
+
+
+Started GET "/assets/twitter/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-12-04 13:32:43 -0200
+
+
+Started GET "/assets/twitter/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-12-04 13:32:43 -0200
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:32:43 -0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-04 13:32:43 -0200
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:32:43 -0200
+
+
+Started GET "/assets/comentario.js?body=1" for 127.0.0.1 at 2014-12-04 13:32:43 -0200
+
+
+Started GET "/assets/geografia.js?body=1" for 127.0.0.1 at 2014-12-04 13:32:43 -0200
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-12-04 13:32:43 -0200
+
+
+Started GET "/assets/login.js?body=1" for 127.0.0.1 at 2014-12-04 13:32:44 -0200
+
+
+Started GET "/assets/usuarios.js?body=1" for 127.0.0.1 at 2014-12-04 13:32:44 -0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-04 13:32:44 -0200
+
+
+Started GET "/usuarios/1" for 127.0.0.1 at 2014-12-04 13:32:46 -0200
+Processing by UsuariosController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUsuario Load (0.0ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered usuarios/show.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 499ms (Views: 499.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/posts/comentar" for 127.0.0.1 at 2014-12-04 13:32:54 -0200
+Processing by PostsController#show_comentar as HTML
+Completed 404 Not Found in 50ms
+
+ActiveRecord::RecordNotFound (Couldn't find Post without an ID):
+  app/controllers/posts_controller.rb:87:in `show_comentar'
+
+
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.5ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (5.0ms)
+  Rendered C:/RailsInstaller/Ruby1.9.3/lib/ruby/gems/1.9.1/gems/actionpack-4.1.5/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (312.5ms)
+
+
+Started GET "/usuarios/1" for 127.0.0.1 at 2014-12-04 13:33:29 -0200
+Processing by UsuariosController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUsuario Load (0.0ms)[0m  SELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered usuarios/show.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 645ms (Views: 640.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2014-12-04 13:33:29 -0200
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2014-12-04 13:33:29 -0200
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2014-12-04 13:33:29 -0200
+
+
+Started GET "/assets/comentario.css?body=1" for 127.0.0.1 at 2014-12-04 13:33:30 -0200
+
+
+Started GET "/assets/geografia.css?body=1" for 127.0.0.1 at 2014-12-04 13:33:30 -0200
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-12-04 13:33:30 -0200
+
+
+Started GET "/assets/home2.css?body=1" for 127.0.0.1 at 2014-12-04 13:33:30 -0200
+
+
+Started GET "/assets/login.css?body=1" for 127.0.0.1 at 2014-12-04 13:33:30 -0200
+
+
+Started GET "/assets/usuarios.css?body=1" for 127.0.0.1 at 2014-12-04 13:33:30 -0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-04 13:33:30 -0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-04 13:33:30 -0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-04 13:33:30 -0200
+
+
+Started GET "/assets/twitter/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-12-04 13:33:30 -0200
+
+
+Started GET "/assets/twitter/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-12-04 13:33:30 -0200
+
+
+Started GET "/assets/twitter/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-12-04 13:33:31 -0200
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-12-04 13:33:31 -0200
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-12-04 13:33:31 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-12-04 13:33:31 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-12-04 13:33:31 -0200
+
+
+Started GET "/assets/twitter/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-12-04 13:33:31 -0200
+
+
+Started GET "/assets/twitter/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-12-04 13:33:31 -0200
+
+
+Started GET "/assets/twitter/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-12-04 13:33:31 -0200
+
+
+Started GET "/assets/twitter/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-12-04 13:33:31 -0200
+
+
+Started GET "/assets/twitter/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-12-04 13:33:31 -0200
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:33:31 -0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-04 13:33:31 -0200
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:33:31 -0200
+
+
+Started GET "/assets/comentario.js?body=1" for 127.0.0.1 at 2014-12-04 13:33:31 -0200
+
+
+Started GET "/assets/geografia.js?body=1" for 127.0.0.1 at 2014-12-04 13:33:32 -0200
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-12-04 13:33:32 -0200
+
+
+Started GET "/assets/login.js?body=1" for 127.0.0.1 at 2014-12-04 13:33:32 -0200
+
+
+Started GET "/assets/usuarios.js?body=1" for 127.0.0.1 at 2014-12-04 13:33:32 -0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-04 13:33:32 -0200
+
+
+Started GET "/usuarios/1" for 127.0.0.1 at 2014-12-04 13:34:10 -0200
+Processing by UsuariosController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUsuario Load (0.0ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered usuarios/show.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 513ms (Views: 507.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2014-12-04 13:34:11 -0200
+
+
+Started GET "/assets/comentario.css?body=1" for 127.0.0.1 at 2014-12-04 13:34:11 -0200
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-12-04 13:34:11 -0200
+
+
+Started GET "/assets/geografia.css?body=1" for 127.0.0.1 at 2014-12-04 13:34:11 -0200
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2014-12-04 13:34:11 -0200
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2014-12-04 13:34:11 -0200
+
+
+Started GET "/assets/home2.css?body=1" for 127.0.0.1 at 2014-12-04 13:34:11 -0200
+
+
+Started GET "/assets/login.css?body=1" for 127.0.0.1 at 2014-12-04 13:34:11 -0200
+
+
+Started GET "/assets/usuarios.css?body=1" for 127.0.0.1 at 2014-12-04 13:34:12 -0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-04 13:34:12 -0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-04 13:34:12 -0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-04 13:34:12 -0200
+
+
+Started GET "/assets/twitter/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-12-04 13:34:12 -0200
+
+
+Started GET "/assets/twitter/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-12-04 13:34:12 -0200
+
+
+Started GET "/assets/twitter/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-12-04 13:34:12 -0200
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-12-04 13:34:12 -0200
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-12-04 13:34:12 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-12-04 13:34:12 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-12-04 13:34:12 -0200
+
+
+Started GET "/assets/twitter/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-12-04 13:34:12 -0200
+
+
+Started GET "/assets/twitter/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-12-04 13:34:12 -0200
+
+
+Started GET "/assets/twitter/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-12-04 13:34:13 -0200
+
+
+Started GET "/assets/twitter/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-12-04 13:34:13 -0200
+
+
+Started GET "/assets/twitter/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-12-04 13:34:13 -0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-04 13:34:13 -0200
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:34:13 -0200
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:34:13 -0200
+
+
+Started GET "/assets/comentario.js?body=1" for 127.0.0.1 at 2014-12-04 13:34:13 -0200
+
+
+Started GET "/assets/geografia.js?body=1" for 127.0.0.1 at 2014-12-04 13:34:13 -0200
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-12-04 13:34:13 -0200
+
+
+Started GET "/assets/login.js?body=1" for 127.0.0.1 at 2014-12-04 13:34:13 -0200
+
+
+Started GET "/assets/usuarios.js?body=1" for 127.0.0.1 at 2014-12-04 13:34:13 -0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-04 13:34:13 -0200
+
+
+Started GET "/usuarios/" for 127.0.0.1 at 2014-12-04 13:35:03 -0200
+Processing by UsuariosController#index as HTML
+  [1m[35mUsuario Load (2.5ms)[0m  SELECT "usuarios".* FROM "usuarios"
+  Rendered usuarios/index.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 489ms (Views: 486.0ms | ActiveRecord: 2.5ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.css?body=1" for 127.0.0.1 at 2014-12-04 13:35:03 -0200
+
+
+Started GET "/assets/home.css?body=1" for 127.0.0.1 at 2014-12-04 13:35:03 -0200
+
+
+Started GET "/assets/comentario.css?body=1" for 127.0.0.1 at 2014-12-04 13:35:03 -0200
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.css?body=1" for 127.0.0.1 at 2014-12-04 13:35:04 -0200
+
+
+Started GET "/assets/geografia.css?body=1" for 127.0.0.1 at 2014-12-04 13:35:04 -0200
+
+
+Started GET "/assets/bootstrap_and_overrides.css?body=1" for 127.0.0.1 at 2014-12-04 13:35:04 -0200
+
+
+Started GET "/assets/home2.css?body=1" for 127.0.0.1 at 2014-12-04 13:35:04 -0200
+
+
+Started GET "/assets/login.css?body=1" for 127.0.0.1 at 2014-12-04 13:35:04 -0200
+
+
+Started GET "/assets/usuarios.css?body=1" for 127.0.0.1 at 2014-12-04 13:35:04 -0200
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2014-12-04 13:35:04 -0200
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2014-12-04 13:35:04 -0200
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2014-12-04 13:35:04 -0200
+
+
+Started GET "/assets/twitter/bootstrap/transition.js?body=1" for 127.0.0.1 at 2014-12-04 13:35:04 -0200
+
+
+Started GET "/assets/twitter/bootstrap/alert.js?body=1" for 127.0.0.1 at 2014-12-04 13:35:04 -0200
+
+
+Started GET "/assets/twitter/bootstrap/modal.js?body=1" for 127.0.0.1 at 2014-12-04 13:35:04 -0200
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.js?body=1" for 127.0.0.1 at 2014-12-04 13:35:04 -0200
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.js?body=1" for 127.0.0.1 at 2014-12-04 13:35:04 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tab.js?body=1" for 127.0.0.1 at 2014-12-04 13:35:05 -0200
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.js?body=1" for 127.0.0.1 at 2014-12-04 13:35:05 -0200
+
+
+Started GET "/assets/twitter/bootstrap/popover.js?body=1" for 127.0.0.1 at 2014-12-04 13:35:05 -0200
+
+
+Started GET "/assets/twitter/bootstrap/button.js?body=1" for 127.0.0.1 at 2014-12-04 13:35:05 -0200
+
+
+Started GET "/assets/twitter/bootstrap/collapse.js?body=1" for 127.0.0.1 at 2014-12-04 13:35:05 -0200
+
+
+Started GET "/assets/twitter/bootstrap/carousel.js?body=1" for 127.0.0.1 at 2014-12-04 13:35:05 -0200
+
+
+Started GET "/assets/twitter/bootstrap/affix.js?body=1" for 127.0.0.1 at 2014-12-04 13:35:05 -0200
+
+
+Started GET "/assets/twitter/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:35:05 -0200
+
+
+Started GET "/assets/turbolinks.js?body=1" for 127.0.0.1 at 2014-12-04 13:35:05 -0200
+
+
+Started GET "/assets/bootstrap.js?body=1" for 127.0.0.1 at 2014-12-04 13:35:05 -0200
+
+
+Started GET "/assets/comentario.js?body=1" for 127.0.0.1 at 2014-12-04 13:35:05 -0200
+
+
+Started GET "/assets/geografia.js?body=1" for 127.0.0.1 at 2014-12-04 13:35:05 -0200
+
+
+Started GET "/assets/home.js?body=1" for 127.0.0.1 at 2014-12-04 13:35:05 -0200
+
+
+Started GET "/assets/login.js?body=1" for 127.0.0.1 at 2014-12-04 13:35:05 -0200
+
+
+Started GET "/assets/usuarios.js?body=1" for 127.0.0.1 at 2014-12-04 13:35:05 -0200
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2014-12-04 13:35:06 -0200
+
+
+Started GET "/usuarios/1" for 127.0.0.1 at 2014-12-04 13:35:44 -0200
+Processing by UsuariosController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUsuario Load (0.0ms)[0m  [1mSELECT  "usuarios".* FROM "usuarios"  WHERE "usuarios"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered usuarios/show.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 548ms (Views: 547.5ms | ActiveRecord: 0.0ms)
