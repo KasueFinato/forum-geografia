@@ -14,6 +14,7 @@ class LoginController < ActionController::Base
 			render :index, layout: 'bootstrap'
 		else
 			session[:usuario] = u.nome
+			session[:usuario_id] = u.id
 			redirect_to root_path, notice: 'Logado com sucesso' #notice não aparece
 		end
 		#redirect_to :usuarios

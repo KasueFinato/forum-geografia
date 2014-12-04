@@ -26,7 +26,7 @@ class PostsController < ApplicationController
 		#@aluno = Aluno.new params.require(:aluno).
 		#		permit(:nome, :matricula, :senha, :email, :turma_id)
 		
-		usuario = Usuario.first #Usuario.new('Luiza Maria','luiza.kkkk@gmail.com','luizakkkk','lailai', '02-01-1997')
+		usuario = Usuario.find (session[:usuario_id]) #Usuario.new('Luiza Maria','luiza.kkkk@gmail.com','luizakkkk','lailai', '02-01-1997')
 		#assunto = Assunto.find(params[:])
 		outroassunto=params[:outroassunto]
     	 	
