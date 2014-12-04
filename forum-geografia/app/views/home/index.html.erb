@@ -33,7 +33,7 @@
 <div class="container">
  
     <center>
-      <h1>Seja bem-vindo, <%= session[:usuario] %>!</h1>
+     <% if session[:usuario] %> <h1>Seja bem-vindo, <%= session[:usuario] %>!</h1><% end %>
     </center>
 
     

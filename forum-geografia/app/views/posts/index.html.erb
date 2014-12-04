@@ -1,6 +1,6 @@
 <h3> Posts </h3>
 
-<%= link_to "Postar", "/posts/new" %>
+<% if session[:usuario] %><%= link_to "Postar", "/posts/new" %><% end %>
   
 
 <table>

@@ -27,7 +27,6 @@ class UsuariosController < ApplicationController
 
 	def new
 		@usuario = Usuario.new()
-		
 	end
 
 	def create
@@ -35,7 +34,8 @@ class UsuariosController < ApplicationController
     	@usuario.senha = Digest::MD5.hexdigest(@usuario.senha)
 
     	if @usuario.save
-    		redirect_to :usuarios, notice: "#{@usuario.nome} cadastrado com sucesso" #não ta aparecendo
+    		redirect_to :controller => "login"#, notice:'{@usuario.nome} cadastrado com sucesso, você receberá um email de confirmação'
+    		#redirect_to login_form, notice: '
     		email = UsuarioMailer.cadastrado(@usuario)
     		email.deliver
     	else

@@ -1,3 +1,4 @@
+<% if session[:usuario] %>
 <h2>Novo Post</h2>
     
 
@@ -40,4 +41,7 @@
     <%= f.submit 'Salvar' %>
 
 
+<% end %>
+<%else%>
+<h4> Você precisa estar logado para postar</h4>
 <% end %>

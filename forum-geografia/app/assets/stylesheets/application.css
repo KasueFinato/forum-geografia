@@ -18,12 +18,17 @@
  	border:1px solid red;
  }
  h1 {
- 	text-align: right;
+ 	text-align: left;
  	font-size: 20px;
  }
 
  h2 {
  	font-size: 40px;
+ }
+
+ h4 {
+   font-size: 30px;
+   text-align: center;
  }
 .mask{
    position: relative;
