@@ -15,12 +15,19 @@
 
   <tbody>
     <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.conteudo %></td>
-        <td><%= post.usuario.nome %></td>
-        <td><%= post.data %></td>
-        <td>Tipo: <%= post.assunto.tipo %></td>
-        
+      <form action="/posts/comentar" method="get">
+            <tr>
+            <td><%=post.id%></td>
+            <td><%= post.conteudo %></td>
+            <td><%= post.usuario.nome %></td>
+            <td><%= post.data %></td>
+            <td>Tipo: <%= post.assunto.tipo %></td>
+            <td>
+            <input type='hidden' name='id' value='<%=post.id%>'>
+            <input type="submit" value="Comentar" />
+          </td>
+        </form>
+
       </tr>
     <% end %>
   </tbody> 

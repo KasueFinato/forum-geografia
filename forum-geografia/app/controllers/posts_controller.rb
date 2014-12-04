@@ -81,7 +81,9 @@ class PostsController < ApplicationController
 		render :index
 	end
 
-	def mostrar
-		
+	def mcomentar
+		@post = Post.find params[:id]
+		@criador = Usuario.find @post.usuario_id
+		render :comentar
 	end
 end
