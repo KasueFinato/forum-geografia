@@ -85,4 +85,12 @@ class PostsController < ApplicationController
 		@criador = Usuario.find @post.usuario_id
 		render :comentar
 	end
+
+	def show_humanas
+		
+	end
+
+	def show_fisicas
+		
+	end
 end
