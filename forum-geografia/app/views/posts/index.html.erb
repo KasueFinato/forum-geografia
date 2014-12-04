@@ -17,7 +17,6 @@
     <% @posts.each do |post| %>
       <form action="/posts/comentar" method="get">
             <tr>
-            <td><%=post.id%></td>
             <td><%= post.conteudo %></td>
             <td><%= post.usuario.nome %></td>
             <td><%= post.data %></td>
