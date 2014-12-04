@@ -60,6 +60,7 @@ class PostsController < ApplicationController
 		    #redirect_to :usuarios
 	    end
     	#@post.assunto = assunto
+    	
     	if @post.save
     		redirect_to :posts, notice: "#{@post.conteudo} inserido com sucesso" #não ta aparecendo
     	else

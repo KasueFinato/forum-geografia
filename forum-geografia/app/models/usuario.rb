@@ -6,23 +6,23 @@ class Usuario < ActiveRecord::Base
 
   validates :nome,
   			#format: { with: /\A[a-zA-Z]+\z/ },???????
-  			length: { in: 10..100 },#curto pq no html não passa de 100 já.. mas não funfou
+  			length: { in: 10..100, message:"O nome deve ter mais de 10 letras" },#curto pq no html não passa de 100 já.. mas não funfou
   			presence: {message: 'O nome deve ser preenchido'}
 
   validates :email,
   			#email: true,
   			presence: {message: 'O email deve ser preenchido'},
-  			length: { in: 5..140},
+  			length: { in: 5..140, message:"O tamanho do email é inválido" },
   			uniqueness: {message: 'Esse email já foi cadastrado'}
  
   validates :login,
   			presence: {message: 'O login deve ser preenchido'},
-  			length: { in: 5..50},
+  			length: { in: 5..50, message:"O login deve ter mais de 5 letras" },
   			uniqueness: {message: 'Esse login já foi cadastrado'}
 
   validates :senha,
-        #:exclude => %w[ asdf qwert zxcv ]
-  			length: { in: 5..32},
+        #exclude: => %w[ asdf qwert zxcv ],
+  			length: { in: 5..32, message:"O senha deve ser maior" },
   			presence: {message: 'A senha deve ser preenchida'}
 
 
