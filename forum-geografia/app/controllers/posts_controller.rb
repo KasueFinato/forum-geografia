@@ -89,7 +89,7 @@ class PostsController < ApplicationController
 	end
 
 	def show_humanas
-		assuntos = Assunto.where(tipo: 1)
+		assuntos = Assunto.where(tipo: 2)
 		assuntos.each do |assunto|
 			x = assunto.id
 			@posts = Post.where(assunto_id: x)
@@ -98,6 +98,11 @@ class PostsController < ApplicationController
 	end
 
 	def show_fisicas
-		#quando funcionar show_humanas copiar e mudar tipo
+		assuntos = Assunto.where(tipo: 1)
+		assuntos.each do |assunto|
+			x = assunto.id
+			@posts = Post.where(assunto_id: x)
+		end
+		render :geo_fisica
 	end
 end
